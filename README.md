@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/themyth92/ngx-lightbox.svg?branch=master)](https://travis-ci.org/themyth92/ngx-lightbox)
 
-# Angular2 Lightbox
-A [lighbox2](https://github.com/lokesh/lightbox2) implementation port to use with Angular2 without the need for jQuery
+# Ngx-Lightbox
+A [lighbox2](https://github.com/lokesh/lightbox2) implementation port to use with new Angular without the need for jQuery
 
 This module works with angular >= 5
-[demo](https://themyth92.com/project/ngx-lightbox/). For angular 2x or 4x, please use [angular2-lightbox](https://github.com/themyth92/angular2-lightbox)
+[demo](https://themyth92.com/project/ngx-lightbox). For angular 2x or 4x, please use [angular2-lightbox](https://github.com/themyth92/angular2-lightbox)
 
 ## Installation
 `npm install --save ngx-lightbox`

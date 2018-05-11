@@ -14,7 +14,7 @@ Update your `angular.json`
 ```
 {
   "styles": [
-    "node_modules/ngx-lightbox/lightbox.css",
+    "./node_modules/ngx-lightbox/lightbox.css",
     ...
   ],
 }

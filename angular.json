@@ -13,13 +13,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-lightbox",
+            "outputPath": "dist",
             "index": "index.html",
             "main": "demo/main.ts",
             "polyfills": "demo/polyfills.ts",
             "tsConfig": "tsconfig-demo.json",
             "styles": [
-              "ngx-lightbox/lightbox.css",
+              "./node_modules/ngx-lightbox/lightbox.css",
               "demo/app.css"
             ],
             "assets": [

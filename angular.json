@@ -1,0 +1,79 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ngx-lightbox": {
+      "root": ".",
+      "sourceRoot": ".",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-lightbox",
+            "index": "index.html",
+            "main": "demo/main.ts",
+            "polyfills": "demo/polyfills.ts",
+            "tsConfig": "tsconfig-demo.json",
+            "styles": [
+              "ngx-lightbox/lightbox.css",
+              "demo/app.css"
+            ],
+            "assets": [
+              { "glob": "**/*", "input": "./demo/img/", "output": "./demo/img/" }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-lightbox:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-lightbox:build:production"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/index.ts",
+            "tsConfig": "tsconfig.json",
+            "karmaConfig": "karma.conf.js",
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ngx-lightbox"
+}

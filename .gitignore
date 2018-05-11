@@ -1,0 +1,11 @@
+node_modules
+src/*.map
+src/*.js
+/compiled
+*.map
+/img
+*.metadata.json
+*.log
+/dist
+*.d.ts
+*.ngsummary.json

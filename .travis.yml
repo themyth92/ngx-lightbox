@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - '6.10.0'
+addons:
+  apt:
+    packages:
+    - sshpass
+before_script:
+  - npm install -g yarn
+  - yarn
+script:
+  - npm test
+after_success:
+  - npm run build
+  - ssh-keyscan $DOMAIN > ~/.ssh/known_hosts
+  - sshpass -p "$PASS" rsync -ar --stats --exclude=.git ./ $USER@$DOMAIN:$FOLDER_PATH
+branches:
+  only:
+    - master
+notifications:
+  email: false

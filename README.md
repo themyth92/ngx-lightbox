@@ -161,3 +161,9 @@ export class AppComponent {
 ## License
 
 MIT
+
+## Donation
+Buy me a beer if you like
+BTC: 1MFx5waJ7Sitn961DaXe3mQXrb7pEoSJct
+ETH: 0x2211F3d683eB1C2d753aD21D9Bd9110729C80B72
+NEO: ARrUrnbq1ogfsoabvCgJ5SHgknhzyUmtuS

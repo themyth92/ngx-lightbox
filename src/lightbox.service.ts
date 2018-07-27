@@ -29,7 +29,6 @@ export class Lightbox {
     const newOptions = {};
 
     // broadcast open event
-    console.log(LIGHTBOX_EVENT);
     this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.OPEN });
     Object.assign(newOptions, this._lightboxConfig, options);
 
@@ -59,6 +58,12 @@ export class Lightbox {
       this._documentRef.querySelector('body').appendChild(overlayComponentRef.location.nativeElement);
       this._documentRef.querySelector('body').appendChild(componentRef.location.nativeElement);
     });
+  }
+
+  close(): void {
+    if (this._lightboxEvent) {
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.CLOSE });
+    }
   }
 
   _createComponent(ComponentClass: any): ComponentRef<any> {

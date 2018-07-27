@@ -1,6 +1,6 @@
 {
   "name": "ngx-lightbox",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
   "dependencies": {},
@@ -14,7 +14,7 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@types/jasmine": "^2.8.7",
     "awesome-typescript-loader": "^5.0.0",
-    "ngx-lightbox": "1.0.2",
+    "ngx-lightbox": "1.1.0",
     "copyfiles": "^2.0.0",
     "core-js": "^2.5.6",
     "del-cli": "^1.1.0",

@@ -350,7 +350,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
 
     // disable scrolling of the page while open
     if (this.options.disableScrolling) {
-      this._rendererRef.setElementClass(this._documentRef.body, 'lb-disable-scrolling', true);
+      this._rendererRef.setElementClass(this._documentRef.documentElement, 'lb-disable-scrolling', true);
     }
   }
 
@@ -390,7 +390,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   private _end(): void {
     this.ui.classList = 'lightbox animation fadeOut';
     if (this.options.disableScrolling) {
-      this._rendererRef.setElementClass(this._documentRef.body, 'lb-disable-scrolling', false);
+      this._rendererRef.setElementClass(this._documentRef.documentElement, 'lb-disable-scrolling', false);
     }
     setTimeout(() => {
       this.cmpRef.destroy();

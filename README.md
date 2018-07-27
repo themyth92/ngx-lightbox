@@ -67,6 +67,11 @@ export class AppComponent {
     // open lightbox
     this._lightbox.open(this._albums, index);
   }
+
+  close(): void {
+    // close lightbox programmatically
+    this._lightbox.close();
+  }
 }
 
 ```

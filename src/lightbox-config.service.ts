@@ -12,6 +12,7 @@ export class LightboxConfig {
   public disableKeyboardNav: boolean;
   public disableScrolling: boolean;
   public centerVertically: boolean;
+  public enableTransition: boolean;
   constructor() {
     this.fadeDuration = 0.7;
     this.resizeDuration = 0.5;
@@ -23,5 +24,6 @@ export class LightboxConfig {
     this.disableKeyboardNav = false;
     this.disableScrolling = false;
     this.centerVertically = false;
+    this.enableTransition = true;
   }
 }

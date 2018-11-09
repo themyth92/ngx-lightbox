@@ -290,7 +290,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
 
       // bind resize event to outer container
       // use enableTransition to prevent infinite loader
-      if(this.options.enableTransition){
+      if (this.options.enableTransition) {
         this._event.transitions = [];
         ['transitionend', 'webkitTransitionEnd', 'oTransitionEnd', 'MSTransitionEnd'].forEach(eventName => {
           this._event.transitions.push(

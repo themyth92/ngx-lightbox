@@ -34,7 +34,8 @@ module.exports = config => {
         modules: [
           'node_modules'
         ],
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        symlinks: true
       },
       devtool: 'inline-source-map',
       module: {

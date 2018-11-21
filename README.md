@@ -136,6 +136,8 @@ wrapAround | **false** | Determine whether to move to the start of the album whe
 disableKeyboardNav | **false** | Determine whether to disable navigation using keyboard event.
 disableScrolling | **false** | If **true**, prevent the page from scrolling while Lightbox is open. This works by settings overflow hidden on the body.
 centerVertically | **false** | If **true**, images will be centered vertically to the screen.
+albumLabel | 	"Image %1 of %2" | 	The text displayed below the caption when viewing an image set. The default text shows the current image number and the total number of images in the set.
+enableTransition | **true** | Transition animation between images will be disabled if this flag set to **false**
 
 **NOTE**: You can either override default config or during a specific opening window
 1. Override default config

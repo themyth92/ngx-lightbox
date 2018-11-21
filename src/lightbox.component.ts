@@ -420,7 +420,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
 
   private _albumLabel(): string {
     // due to {this.currentImageIndex} is set from 0 to {this.album.length} - 1
-    return `Image ${Number(this.currentImageIndex + 1)} of ${this.album.length}`;
+    return this.options.albumLabel.replace(/%1/g, Number(this.currentImageIndex + 1)).replace(/%2/g, this.album.length);
   }
 
   private _changeImage(newIndex: number): void {

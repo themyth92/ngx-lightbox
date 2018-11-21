@@ -289,16 +289,21 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
       this._rendererRef.setElementStyle(this._outerContainerElem.nativeElement, 'height', `${newHeight}px`);
 
       // bind resize event to outer container
-      this._event.transitions = [];
-      ['transitionend', 'webkitTransitionEnd', 'oTransitionEnd', 'MSTransitionEnd'].forEach(eventName => {
-        this._event.transitions.push(
-          this._rendererRef.listen(this._outerContainerElem.nativeElement, eventName, (event: any) => {
-            if (event.target === event.currentTarget) {
-              this._postResize(newWidth, newHeight);
-            }
-          })
-        );
-      });
+      // use enableTransition to prevent infinite loader
+      if (this.options.enableTransition) {
+        this._event.transitions = [];
+        ['transitionend', 'webkitTransitionEnd', 'oTransitionEnd', 'MSTransitionEnd'].forEach(eventName => {
+          this._event.transitions.push(
+            this._rendererRef.listen(this._outerContainerElem.nativeElement, eventName, (event: any) => {
+              if (event.target === event.currentTarget) {
+                this._postResize(newWidth, newHeight);
+              }
+            })
+          );
+        });
+      } else {
+        this._postResize(newWidth, newHeight);
+      }
     } else {
       this._postResize(newWidth, newHeight);
     }

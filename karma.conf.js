@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+process.traceDeprecation = true;
+
 module.exports = config => {
   config.set({
     basePath: '',
@@ -30,6 +32,7 @@ module.exports = config => {
       './karma-main.js': ['webpack', 'sourcemap']
     },
     webpack: {
+      mode: 'development',
       resolve: {
         modules: [
           'node_modules'
@@ -46,6 +49,12 @@ module.exports = config => {
             include: [
               path.resolve(__dirname, 'src')
             ]
+          },
+          {
+            // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
+            // Removing this will cause deprecation warnings to appear.
+            test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
+            parser: { system: true },
           }
         ]
       },
@@ -53,6 +62,10 @@ module.exports = config => {
         new webpack.ContextReplacementPlugin(
           /@angular(\\|\/)core(\\|\/)src/,
           path.resolve(__dirname, '../src')
+        ),
+        new webpack.ContextReplacementPlugin(
+          /\@angular(\\|\/)core(\\|\/)fesm5/,
+          path.join(__dirname, './src')
         )
       ]
     },

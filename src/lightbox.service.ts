@@ -6,7 +6,7 @@ import {
   Injectable,
   Injector
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { LightboxComponent } from './lightbox.component';
 import { LightboxConfig } from './lightbox-config.service';
 import { LightboxEvent, LIGHTBOX_EVENT, IAlbum } from './lightbox-event.service';
@@ -20,7 +20,7 @@ export class Lightbox {
     private _applicationRef: ApplicationRef,
     private _lightboxConfig: LightboxConfig,
     private _lightboxEvent: LightboxEvent,
-    @Inject(DOCUMENT) private _documentRef: any
+    @Inject(DOCUMENT) private _documentRef: Document
   ) {}
 
   open(album: Array<IAlbum>, curIndex = 0, options = {}): void {

@@ -8,7 +8,7 @@ import {
   OnDestroy,
   Renderer
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { LightboxEvent, LIGHTBOX_EVENT, IEvent } from './lightbox-event.service';
 import { Subscription } from 'rxjs';
 

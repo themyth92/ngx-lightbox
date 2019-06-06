@@ -9,17 +9,6 @@ This module works with angular >= 5
 ## Installation
 `npm install --save ngx-lightbox`
 
-Update your `angular.json`
-
-```
-{
-  "styles": [
-    "./node_modules/ngx-lightbox/lightbox.css",
-    ...
-  ],
-}
-```
-
 ## Usage
 ### Module:
 Import `LightboxModule` from `ngx-lightbox`

@@ -9,8 +9,10 @@ import {
   Renderer,
   SecurityContext,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { DOCUMENT, DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { LightboxEvent, LIGHTBOX_EVENT, IAlbum, IEvent, LightboxWindowRef } from './lightbox-event.service';
 
 @Component({
@@ -19,11 +21,32 @@ import { LightboxEvent, LIGHTBOX_EVENT, IAlbum, IEvent, LightboxWindowRef } from
       <div class="lb-container" #container>
         <img class="lb-image" [src]="album[currentImageIndex].src" class="lb-image animation fadeIn" [hidden]="ui.showReloader" #image>
         <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
-          <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
-          <a class="lb-next"[hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
+          <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow>
+            <svg class="lb-prevnext-ico lb-prev-ico lb-icon" viewBox="0 0 23 41">
+              <path d="M18.54 2L2 18.86 18.57 36"/>
+            </svg>
+          </a>
+          <a class="lb-next"[hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow>
+            <svg class="lb-prevnext-ico lb-next-ico lb-icon" viewBox="0 0 23 41">
+              <path d="M2.03 36l16.54-16.86L2 2"/>
+            </svg>
+          </a>
         </div>
         <div class="lb-loader" [hidden]="!ui.showReloader" (click)="close($event)">
-          <a class="lb-cancel"></a>
+          <a class="lb-cancel">
+            <svg class="lb-spinner" viewBox="0 0 48 48">
+              <circle cx="24" cy="4" r="4" fill="#fff" />
+              <circle cx="12.19" cy="7.86" r="3.7" fill="#A79390" />
+              <circle cx="5.02" cy="17.68" r="3.4" fill="#A79390" />
+              <circle cx="5.02" cy="30.32" r="3.1" fill="#A79390" />
+              <circle cx="12.19" cy="40.14" r="2.8" fill="#A79390" />
+              <circle cx="24" cy="44" r="2.5" fill="#A79390" />
+              <circle cx="35.81" cy="40.14" r="2.2" fill="#A79390" />
+              <circle cx="42.98" cy="30.32" r="1.9" fill="#A79390" />
+              <circle cx="42.98" cy="17.68" r="1.6" fill="#A79390" />
+              <circle cx="35.81" cy="7.86" r="1.3" fill="#A79390" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -35,10 +58,17 @@ import { LightboxEvent, LIGHTBOX_EVENT, IAlbum, IEvent, LightboxWindowRef } from
           <span class="lb-number animation fadeIn" [hidden]="!ui.showPageNumber" #number>{{ content.pageNumber }}</span>
         </div>
         <div class="lb-closeContainer">
-          <a class="lb-close" (click)="close($event)"></a>
+          <a class="lb-close" (click)="close($event)">
+            <svg class="lb-close-ico lb-icon" viewBox="0 0 26 26">
+              <line x1="1" y1="25" x2="25" y2="1"/>
+              <line x1="25" y1="25" x2="1" y2="1"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>`,
+  styleUrls: ['./lightbox.component.css'],
+  encapsulation: ViewEncapsulation.None,
   selector: '[lb-content]',
   host: {
     '(click)': 'close($event)',
@@ -50,15 +80,15 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() currentImageIndex: number;
   @Input() options: any;
   @Input() cmpRef: any;
-  @ViewChild('outerContainer') _outerContainerElem: ElementRef;
-  @ViewChild('container') _containerElem: ElementRef;
-  @ViewChild('leftArrow') _leftArrowElem: ElementRef;
-  @ViewChild('rightArrow') _rightArrowElem: ElementRef;
-  @ViewChild('navArrow') _navArrowElem: ElementRef;
-  @ViewChild('dataContainer') _dataContainerElem: ElementRef;
-  @ViewChild('image') _imageElem: ElementRef;
-  @ViewChild('caption') _captionElem: ElementRef;
-  @ViewChild('number') _numberElem: ElementRef;
+  @ViewChild('outerContainer', /* TODO: add static flag */ {static: false}) _outerContainerElem: ElementRef;
+  @ViewChild('container', /* TODO: add static flag */ {static: false}) _containerElem: ElementRef;
+  @ViewChild('leftArrow', /* TODO: add static flag */ {static: false}) _leftArrowElem: ElementRef;
+  @ViewChild('rightArrow', /* TODO: add static flag */ {static: false}) _rightArrowElem: ElementRef;
+  @ViewChild('navArrow', /* TODO: add static flag */ {static: false}) _navArrowElem: ElementRef;
+  @ViewChild('dataContainer', /* TODO: add static flag */ {static: false}) _dataContainerElem: ElementRef;
+  @ViewChild('image', /* TODO: add static flag */ {static: false}) _imageElem: ElementRef;
+  @ViewChild('caption', /* TODO: add static flag */ {static: false}) _captionElem: ElementRef;
+  @ViewChild('number', /* TODO: add static flag */ {static: false}) _numberElem: ElementRef;
   public content: any;
   public ui: any;
   private _cssValue: any;

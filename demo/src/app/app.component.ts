@@ -3,7 +3,8 @@ import { Lightbox, LightboxConfig, LightboxEvent, LIGHTBOX_EVENT, IEvent, IAlbum
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'demo',
+  selector: 'app-root',
+  styleUrls: ['./app.component.css'],
   template: `
     <div class="column has-text-centered">
       <div class="img-row" *ngFor="let image of albums; let i=index">
@@ -25,9 +26,9 @@ export class AppComponent {
   ) {
     this.albums = [];
     for (let i = 1; i <= 4; i++) {
-      const src = 'demo/img/image' + i + '.jpg';
+      const src = 'assets/img/image' + i + '.jpg';
       const caption = 'Image ' + i + ' caption here';
-      const thumb = 'demo/img/image' + i + '-thumb.jpg';
+      const thumb = 'assets/img/image' + i + '-thumb.jpg';
       const album = {
          src: src,
          caption: caption,

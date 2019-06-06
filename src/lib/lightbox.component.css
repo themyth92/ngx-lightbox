@@ -1,9 +1,3 @@
-/* Preload images */
-body:after {
-  content: url(img/close.png) url(img/loading.gif) url(img/prev.png) url(img/next.png);
-  display: none;
-}
-
 html.lb-disable-scrolling {
   overflow: hidden;
   /* Position fixed required for iOS. Just putting overflow: hidden; on the body is not enough. */
@@ -60,6 +54,16 @@ html.lb-disable-scrolling {
   background-color: white;
 }
 
+.lb-icon {
+  display: block;
+  pointer-events: none;
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
 .lb-outerContainer:after {
   content: "";
   display: table;
@@ -81,7 +85,34 @@ html.lb-disable-scrolling {
   width: 32px;
   height: 32px;
   margin: 0 auto;
-  background: url(img/loading.gif) no-repeat;
+}
+
+.lb-spinner {
+  height: 32px;
+  width: 32px;
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; */
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 1.2s;
+  -webkit-animation-name: rotate;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  -moz-transition-property: -moz-transform;
+  -moz-animation-name: rotate;
+  -moz-animation-duration: 1.2s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+
+  transition-property: transform;
+  animation-name: rotate;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 .lb-nav {
@@ -99,20 +130,19 @@ html.lb-disable-scrolling {
 
 .lb-nav a {
   outline: none;
-  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
 }
 
 .lb-prev, .lb-next {
   height: 100%;
   cursor: pointer;
   display: block;
+  position: relative;
 }
 
 .lb-nav a.lb-prev {
   width: 34%;
   left: 0;
   float: left;
-  background: url(img/prev.png) left 48% no-repeat;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   -webkit-transition: opacity 0.6s;
@@ -130,7 +160,6 @@ html.lb-disable-scrolling {
   width: 64%;
   right: 0;
   float: right;
-  background: url(img/next.png) right 48% no-repeat;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   -webkit-transition: opacity 0.6s;
@@ -142,6 +171,23 @@ html.lb-disable-scrolling {
 .lb-nav a.lb-next:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+
+.lb-prevnext-ico {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 23px;
+  height: 41px;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.45));
+}
+
+.lb-prev-ico {
+  left: 20px;
+}
+
+.lb-next-ico {
+  right: 20px;
 }
 
 .lb-dataContainer {
@@ -195,10 +241,11 @@ html.lb-disable-scrolling {
 
 .lb-data .lb-close {
   display: block;
+  box-sizing: border-box;
   float: right;
   width: 30px;
   height: 30px;
-  background: url(img/close.png) top right no-repeat;
+  padding: 4px;
   text-align: right;
   outline: none;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
@@ -215,7 +262,43 @@ html.lb-disable-scrolling {
   opacity: 1;
 }
 
+.lb-close-ico {
+  width: 100%;
+  height: 100%;
+}
+
 /* animation */
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 @keyframes fadeIn{    
   0% {opacity: 0;}
   100% {opacity: 1;}

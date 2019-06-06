@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "paths": {
+      "ngx-lightbox": [
+        "src/public-api"
+      ],
+      "ngx-lightbox/*": [
+        "src/lib/*"
+      ]
+    }
+  }
+}

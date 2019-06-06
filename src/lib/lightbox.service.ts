@@ -6,7 +6,7 @@ import {
   Injectable,
   Injector
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { LightboxComponent } from './lightbox.component';
 import { LightboxConfig } from './lightbox-config.service';
 import { LightboxEvent, LIGHTBOX_EVENT, IAlbum } from './lightbox-event.service';
@@ -54,7 +54,6 @@ export class Lightbox {
       componentRef.onDestroy(() => {
         this._applicationRef.detachView(componentRef.hostView);
       });
-
       this._documentRef.querySelector('body').appendChild(overlayComponentRef.location.nativeElement);
       this._documentRef.querySelector('body').appendChild(componentRef.location.nativeElement);
     });

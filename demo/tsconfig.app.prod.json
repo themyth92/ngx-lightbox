@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "paths": {
+      "ngx-lightbox": [
+        "dist/ngx-lightbox"
+      ],
+      "ngx-lightbox/*": [
+        "dist/ngx-lightbox/*"
+      ]
+    }
+  }
+}

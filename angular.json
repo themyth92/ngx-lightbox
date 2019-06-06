@@ -19,7 +19,7 @@
             "polyfills": "demo/polyfills.ts",
             "tsConfig": "tsconfig-demo.json",
             "styles": [
-              "./node_modules/ngx-lightbox/lightbox.css",
+              "./src/lightbox.css",
               "demo/app.css"
             ],
             "assets": [

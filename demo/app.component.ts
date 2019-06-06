@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Lightbox, LightboxConfig, LightboxEvent, LIGHTBOX_EVENT, IEvent, IAlbum } from 'ngx-lightbox';
 import { Subscription } from 'rxjs';
+import { IAlbum, IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent } from '../src';
 
 @Component({
   selector: 'demo',
@@ -9,6 +9,11 @@ import { Subscription } from 'rxjs';
       <div class="img-row" *ngFor="let image of albums; let i=index">
         <img class="img-frame" [src]="image.thumb" (click)="open(i)"/>
       </div>
+    </div>
+    <div class="huge-margin-top column has-text-centered">
+        <div class="img-row" *ngFor="let image of albums; let i=index">
+            <img class="img-frame" [src]="image.thumb" (click)="open(i)"/>
+        </div>
     </div>
   `,
   host: {
@@ -45,7 +50,11 @@ export class AppComponent {
     this._subscription = this._lightboxEvent.lightboxEvent$.subscribe((event: IEvent) => this._onReceivedEvent(event));
 
     // override the default config
-    this._lightbox.open(this.albums, index, { wrapAround: true, showImageNumberLabel: true });
+    this._lightbox.open(this.albums, index, {
+      wrapAround: true,
+      showImageNumberLabel: true,
+      disableScrolling: true
+    });
   }
 
   private _onReceivedEvent(event: IEvent): void {

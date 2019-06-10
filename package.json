@@ -9,7 +9,7 @@
     "@angular/core": "^8.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.800.0",
+    "@angular-devkit/build-angular": "^0.800.2",
     "@angular-devkit/build-ng-packagr": "~0.800.0",
     "@angular/cli": "^8.0.1",
     "@angular/common": "^8.0.0",
@@ -38,7 +38,7 @@
     "tslint": "^5.17.0",
     "typescript": "3.4.5",
     "webpack": "^4.33.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "^0.9.1"
   },
   "scripts": {
     "start": "ng serve demo",

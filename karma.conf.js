@@ -5,10 +5,18 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     files: [
       { pattern: './src/img/*.png', watched: false, included: false, served: true, nocache: false }
     ],
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    reporters: ['progress', 'kjhtml'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false,
+    restartOnFileChange: true,
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
@@ -23,14 +31,6 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/ngx-lightbox'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
-    },
-    reporters: ['progress', 'kjhtml'],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true
+    }
   });
 };

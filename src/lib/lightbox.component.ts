@@ -11,8 +11,8 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 import { LightboxEvent, LIGHTBOX_EVENT, IAlbum, IEvent, LightboxWindowRef } from './lightbox-event.service';
 
 @Component({
@@ -80,15 +80,15 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() currentImageIndex: number;
   @Input() options: any;
   @Input() cmpRef: any;
-  @ViewChild('outerContainer', /* TODO: add static flag */ {static: false}) _outerContainerElem: ElementRef;
-  @ViewChild('container', /* TODO: add static flag */ {static: false}) _containerElem: ElementRef;
-  @ViewChild('leftArrow', /* TODO: add static flag */ {static: false}) _leftArrowElem: ElementRef;
-  @ViewChild('rightArrow', /* TODO: add static flag */ {static: false}) _rightArrowElem: ElementRef;
-  @ViewChild('navArrow', /* TODO: add static flag */ {static: false}) _navArrowElem: ElementRef;
-  @ViewChild('dataContainer', /* TODO: add static flag */ {static: false}) _dataContainerElem: ElementRef;
-  @ViewChild('image', /* TODO: add static flag */ {static: false}) _imageElem: ElementRef;
-  @ViewChild('caption', /* TODO: add static flag */ {static: false}) _captionElem: ElementRef;
-  @ViewChild('number', /* TODO: add static flag */ {static: false}) _numberElem: ElementRef;
+  @ViewChild('outerContainer', {static: false}) _outerContainerElem: ElementRef;
+  @ViewChild('container', {static: false}) _containerElem: ElementRef;
+  @ViewChild('leftArrow', {static: false}) _leftArrowElem: ElementRef;
+  @ViewChild('rightArrow', {static: false}) _rightArrowElem: ElementRef;
+  @ViewChild('navArrow', {static: false}) _navArrowElem: ElementRef;
+  @ViewChild('dataContainer', {static: false}) _dataContainerElem: ElementRef;
+  @ViewChild('image', {static: false}) _imageElem: ElementRef;
+  @ViewChild('caption', {static: false}) _captionElem: ElementRef;
+  @ViewChild('number', {static: false}) _numberElem: ElementRef;
   public content: any;
   public ui: any;
   private _cssValue: any;
@@ -101,7 +101,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
     private _sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) private _documentRef: any
+    @Inject(DOCUMENT) private _documentRef: Document
   ) {
     // initialize data
     this.options = this.options || {};

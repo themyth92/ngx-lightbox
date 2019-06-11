@@ -42,11 +42,11 @@
   },
   "scripts": {
     "start": "ng serve demo",
-    "build": "ng ng build ngx-lightbox && ng build demo --prod",
+    "build": "ng build ngx-lightbox && ng build demo --prod",
     "serve_prod": "serve dist/demo",
     "test": "ng test ngx-lightbox",
     "lint": "ng lint ngx-lightbox",
-    "prepublish": "echo \"Make sure to run npm run build. Go to dist/ngx-lightbox folder and run npm publish there.\" && exit 1"
+    "prepublish": "echo \"Make sure to run npm run build. Go to dist/ngx-lightbox folder and run npm publish there.\" && exit 0"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { LightboxModule } from '../src';
+import { LightboxModule } from '../../../src/public-api';
 
 @NgModule({
   imports: [ BrowserModule, LightboxModule ],

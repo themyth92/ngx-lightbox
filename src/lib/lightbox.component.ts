@@ -94,6 +94,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   private _cssValue: any;
   private _event: any;
   private _windowRef: any;
+  private _documentRef?: Document;
   constructor(
     private _elemRef: ElementRef,
     private _rendererRef: Renderer,
@@ -101,13 +102,14 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
     private _sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) private _documentRef: Document
+    @Inject(DOCUMENT) documentRef: any
   ) {
     // initialize data
     this.options = this.options || {};
     this.album = this.album || [];
     this.currentImageIndex = this.currentImageIndex || 0;
     this._windowRef = this._lightboxWindowRef.nativeWindow;
+    this._documentRef = documentRef as Document;
 
     // control the interactive of the directive
     this.ui = {
@@ -139,6 +141,8 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
     this._event.subscription = this._lightboxEvent.lightboxEvent$
       .subscribe((event: IEvent) => this._onReceivedEvent(event));
   }
+
+
 
   public ngOnInit(): void {
     this.album.forEach(album => {

@@ -14,14 +14,19 @@ import { LightboxOverlayComponent } from './lightbox-overlay.component';
 
 @Injectable()
 export class Lightbox {
+
+  private _documentRef?: Document;
+
   constructor(
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _injector: Injector,
     private _applicationRef: ApplicationRef,
     private _lightboxConfig: LightboxConfig,
     private _lightboxEvent: LightboxEvent,
-    @Inject(DOCUMENT) private _documentRef: Document
-  ) {}
+    @Inject(DOCUMENT) documentRef: any
+  ) {
+    this._documentRef = documentRef as Document;
+  }
 
   open(album: Array<IAlbum>, curIndex = 0, options = {}): void {
     const overlayComponentRef = this._createComponent(LightboxOverlayComponent);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IAlbum, IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent } from '../src';
+import { IAlbum, IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent } from '../../../src/public-api';
 
 @Component({
   selector: 'app-root',

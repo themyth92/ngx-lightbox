@@ -9,6 +9,7 @@ export class LightboxConfig {
   public showImageNumberLabel: boolean;
   public alwaysShowNavOnTouchDevices: boolean;
   public wrapAround: boolean;
+  public disableNavigation: boolean;
   public disableKeyboardNav: boolean;
   public disableScrolling: boolean;
   public centerVertically: boolean;
@@ -20,6 +21,7 @@ export class LightboxConfig {
     this.fitImageInViewPort = true;
     this.positionFromTop = 20;
     this.showImageNumberLabel = false;
+    this.disableNavigation = true;
     this.alwaysShowNavOnTouchDevices = false;
     this.wrapAround = false;
     this.disableKeyboardNav = false;

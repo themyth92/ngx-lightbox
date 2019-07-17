@@ -19,7 +19,7 @@ import { LightboxEvent, LIGHTBOX_EVENT, IAlbum, IEvent, LightboxWindowRef } from
     <div class="lb-outerContainer transition" #outerContainer>
       <div class="lb-container" #container>
         <img class="lb-image" [src]="album[currentImageIndex].src" class="lb-image animation fadeIn" [hidden]="ui.showReloader" #image>
-        <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
+        <div class="lb-nav" [hidden]="!ui.showArrowNav || options.disableNavigation" #navArrow>
           <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
           <a class="lb-next"[hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
         </div>
@@ -425,10 +425,12 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   private _changeImage(newIndex: number): void {
-    this.currentImageIndex = newIndex;
-    this._hideImage();
-    this._registerImageLoadingEvent();
-    this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.CHANGE_PAGE, data: newIndex });
+    if (!this.options.disableNavigation) {
+      this.currentImageIndex = newIndex;
+      this._hideImage();
+      this._registerImageLoadingEvent();
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.CHANGE_PAGE, data: newIndex });
+    }
   }
 
   private _hideImage(): void {

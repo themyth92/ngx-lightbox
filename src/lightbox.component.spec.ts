@@ -14,6 +14,7 @@ describe('[ Unit - LightboxComponent ]', () => {
         resizeDuration: 0.5,
         fitImageInViewPort: true,
         positionFromTop: 20,
+        disableNavigation: false,
         showImageNumberLabel: false,
         alwaysShowNavOnTouchDevices: false,
         wrapAround: false,
@@ -131,6 +132,14 @@ describe('[ Unit - LightboxComponent ]', () => {
       });
       expect(lightboxEvent.broadcastLightboxEvent).toHaveBeenCalledTimes(1);
       expect(lightboxEvent.broadcastLightboxEvent).toHaveBeenCalledWith({ id: LIGHTBOX_EVENT.CHANGE_PAGE, data: 0 });
+    });
+
+    it('should disable click / keyboard navigation in an album with disableNavigation', () => {
+      fixture.componentInstance.options.disableNavigation = true;
+      fixture.componentInstance['_event'].load = jasmine.createSpy('load');
+      spyOn(lightboxEvent, 'broadcastLightboxEvent');
+      fixture.componentInstance.nextImage();
+      expect(lightboxEvent.broadcastLightboxEvent).not.toHaveBeenCalled();
     });
   });
 

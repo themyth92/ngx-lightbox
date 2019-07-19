@@ -4324,6 +4324,11 @@ neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
 
+ngx-lightbox@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.0.0.tgz#c478be6e496c13e62f7db8b452433a7ff917c4e7"
+  integrity sha512-8Ac3ZmQzjllif9g6knZe9m/nzP4zdszFeaEimJ5apyIfVdQ7C4GaApHhSodY+a+M30N9IRlWu1k5HijKXoOCkw==
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

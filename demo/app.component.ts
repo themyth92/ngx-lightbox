@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+
+import { Component } from '@angular/core';
+
 import { IAlbum, IEvent, Lightbox, LIGHTBOX_EVENT, LightboxConfig, LightboxEvent } from '../src';
 
 @Component({

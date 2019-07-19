@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -10,9 +11,15 @@ import {
   SecurityContext,
   ViewChild,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LightboxEvent, LIGHTBOX_EVENT, IAlbum, IEvent, LightboxWindowRef } from './lightbox-event.service';
+
+import {
+  IAlbum,
+  IEvent,
+  LIGHTBOX_EVENT,
+  LightboxEvent,
+  LightboxWindowRef,
+} from './lightbox-event.service';
 
 @Component({
   template: `

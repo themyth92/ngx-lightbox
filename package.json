@@ -1,6 +1,6 @@
 {
   "name": "ngx-lightbox",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
   "dependencies": {},
@@ -29,7 +29,8 @@
     "typescript": "3.4.5",
     "webpack": "^4.33.0",
     "zone.js": "^0.9.1",
-    "@angular-devkit/build-angular": "~0.800.1"
+    "@angular-devkit/build-angular": "~0.801.2",
+    "ngx-lightbox": "^2.0.0"
   },
   "scripts": {
     "start": "./node_modules/.bin/ng serve",

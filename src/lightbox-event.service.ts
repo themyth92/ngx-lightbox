@@ -1,5 +1,6 @@
+import { Observable, Subject } from 'rxjs';
+
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
 
 export interface IEvent {
   id: number;

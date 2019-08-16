@@ -7,7 +7,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Renderer,
+  Renderer2,
   SecurityContext,
   ViewChild,
 } from '@angular/core';
@@ -58,15 +58,15 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() currentImageIndex: number;
   @Input() options: any;
   @Input() cmpRef: any;
-  @ViewChild('outerContainer', {static: false}) _outerContainerElem: ElementRef;
-  @ViewChild('container', {static: false}) _containerElem: ElementRef;
-  @ViewChild('leftArrow', {static: false}) _leftArrowElem: ElementRef;
-  @ViewChild('rightArrow', {static: false}) _rightArrowElem: ElementRef;
-  @ViewChild('navArrow', {static: false}) _navArrowElem: ElementRef;
-  @ViewChild('dataContainer', {static: false}) _dataContainerElem: ElementRef;
-  @ViewChild('image', {static: false}) _imageElem: ElementRef;
-  @ViewChild('caption', {static: false}) _captionElem: ElementRef;
-  @ViewChild('number', {static: false}) _numberElem: ElementRef;
+  @ViewChild('outerContainer', { static: false }) _outerContainerElem: ElementRef;
+  @ViewChild('container', { static: false }) _containerElem: ElementRef;
+  @ViewChild('leftArrow', { static: false }) _leftArrowElem: ElementRef;
+  @ViewChild('rightArrow', { static: false }) _rightArrowElem: ElementRef;
+  @ViewChild('navArrow', { static: false }) _navArrowElem: ElementRef;
+  @ViewChild('dataContainer', { static: false }) _dataContainerElem: ElementRef;
+  @ViewChild('image', { static: false }) _imageElem: ElementRef;
+  @ViewChild('caption', { static: false }) _captionElem: ElementRef;
+  @ViewChild('number', { static: false }) _numberElem: ElementRef;
   public content: any;
   public ui: any;
   private _cssValue: any;
@@ -74,7 +74,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   private _windowRef: any;
   constructor(
     private _elemRef: ElementRef,
-    private _rendererRef: Renderer,
+    private _rendererRef: Renderer2,
     private _lightboxEvent: LightboxEvent,
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
@@ -263,8 +263,8 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       }
 
-      this._rendererRef.setElementStyle(this._imageElem.nativeElement, 'width', `${imageWidth}px`);
-      this._rendererRef.setElementStyle(this._imageElem.nativeElement, 'height', `${imageHeight}px`);
+      this._rendererRef.setStyle(this._imageElem.nativeElement, 'width', `${imageWidth}px`);
+      this._rendererRef.setStyle(this._imageElem.nativeElement, 'height', `${imageHeight}px`);
     }
 
     this._sizeContainer(imageWidth, imageHeight);
@@ -281,7 +281,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
     const viewOffset = windowHeight / 2 - imageHeight / 2;
     const topDistance = scrollOffset + viewOffset;
 
-    this._rendererRef.setElementStyle(this._lightboxElem.nativeElement, 'top', `${topDistance}px`);
+    this._rendererRef.setStyle(this._lightboxElem.nativeElement, 'top', `${topDistance}px`);
   }
 
   private _sizeContainer(imageWidth: number, imageHeight: number): void {
@@ -293,8 +293,8 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
       this._cssValue.imageBorderWidthTop + this._cssValue.imageBorderWidthBottom;
 
     if (oldWidth !== newWidth || oldHeight !== newHeight) {
-      this._rendererRef.setElementStyle(this._outerContainerElem.nativeElement, 'width', `${newWidth}px`);
-      this._rendererRef.setElementStyle(this._outerContainerElem.nativeElement, 'height', `${newHeight}px`);
+      this._rendererRef.setStyle(this._outerContainerElem.nativeElement, 'width', `${newWidth}px`);
+      this._rendererRef.setStyle(this._outerContainerElem.nativeElement, 'height', `${newHeight}px`);
 
       // bind resize event to outer container
       // use enableTransition to prevent infinite loader
@@ -327,7 +327,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
       this._event.transitions = [];
     }
 
-    this._rendererRef.setElementStyle(this._dataContainerElem.nativeElement, 'width', `${newWidth}px`);
+    this._rendererRef.setStyle(this._dataContainerElem.nativeElement, 'width', `${newWidth}px`);
     this._showImage();
   }
 
@@ -355,15 +355,15 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
     const left = this._windowRef.pageXOffset || this._documentRef.documentElement.scrollLeft;
 
     if (!this.options.centerVertically) {
-      this._rendererRef.setElementStyle(this._lightboxElem.nativeElement, 'top', `${top}px`);
+      this._rendererRef.setStyle(this._lightboxElem.nativeElement, 'top', `${top}px`);
     }
 
-    this._rendererRef.setElementStyle(this._lightboxElem.nativeElement, 'left', `${left}px`);
-    this._rendererRef.setElementStyle(this._lightboxElem.nativeElement, 'display', 'block');
+    this._rendererRef.setStyle(this._lightboxElem.nativeElement, 'left', `${left}px`);
+    this._rendererRef.setStyle(this._lightboxElem.nativeElement, 'display', 'block');
 
     // disable scrolling of the page while open
     if (this.options.disableScrolling) {
-      this._rendererRef.setElementClass(this._documentRef.documentElement, 'lb-disable-scrolling', true);
+      this._rendererRef.addClass(this._documentRef.documentElement, 'lb-disable-scrolling');
     }
   }
 
@@ -374,36 +374,36 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
     const resizeDuration = this.options.resizeDuration;
     const fadeDuration = this.options.fadeDuration;
 
-    this._rendererRef.setElementStyle(this._lightboxElem.nativeElement,
+    this._rendererRef.setStyle(this._lightboxElem.nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._lightboxElem.nativeElement,
+    this._rendererRef.setStyle(this._lightboxElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._outerContainerElem.nativeElement,
+    this._rendererRef.setStyle(this._outerContainerElem.nativeElement,
       '-webkit-transition-duration', `${resizeDuration}s`);
-    this._rendererRef.setElementStyle(this._outerContainerElem.nativeElement,
+    this._rendererRef.setStyle(this._outerContainerElem.nativeElement,
       'transition-duration', `${resizeDuration}s`);
-    this._rendererRef.setElementStyle(this._dataContainerElem.nativeElement,
+    this._rendererRef.setStyle(this._dataContainerElem.nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._dataContainerElem.nativeElement,
+    this._rendererRef.setStyle(this._dataContainerElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._imageElem.nativeElement,
+    this._rendererRef.setStyle(this._imageElem.nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._imageElem.nativeElement,
+    this._rendererRef.setStyle(this._imageElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._captionElem.nativeElement,
+    this._rendererRef.setStyle(this._captionElem.nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._captionElem.nativeElement,
+    this._rendererRef.setStyle(this._captionElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._numberElem.nativeElement,
+    this._rendererRef.setStyle(this._numberElem.nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setElementStyle(this._numberElem.nativeElement,
+    this._rendererRef.setStyle(this._numberElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
   }
 
   private _end(): void {
     this.ui.classList = 'lightbox animation fadeOut';
     if (this.options.disableScrolling) {
-      this._rendererRef.setElementClass(this._documentRef.documentElement, 'lb-disable-scrolling', false);
+      this._rendererRef.addClass(this._documentRef.documentElement, 'lb-disable-scrolling');
     }
     setTimeout(() => {
       this.cmpRef.destroy();
@@ -465,8 +465,8 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
       if (this.options.wrapAround) {
         if (alwaysShowNav) {
           // alternatives this.$lightbox.find('.lb-prev, .lb-next').css('opacity', '1');
-          this._rendererRef.setElementStyle(this._leftArrowElem.nativeElement, 'opacity', '1');
-          this._rendererRef.setElementStyle(this._rightArrowElem.nativeElement, 'opacity', '1');
+          this._rendererRef.setStyle(this._leftArrowElem.nativeElement, 'opacity', '1');
+          this._rendererRef.setStyle(this._rightArrowElem.nativeElement, 'opacity', '1');
         }
 
         // alternatives this.$lightbox.find('.lb-prev, .lb-next').show();
@@ -478,7 +478,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
           this._showLeftArrowNav();
           if (alwaysShowNav) {
             // alternatives this.$lightbox.find('.lb-prev').css('opacity', '1');
-            this._rendererRef.setElementStyle(this._leftArrowElem.nativeElement, 'opacity', '1');
+            this._rendererRef.setStyle(this._leftArrowElem.nativeElement, 'opacity', '1');
           }
         }
 
@@ -487,7 +487,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
           this._showRightArrowNav();
           if (alwaysShowNav) {
             // alternatives this.$lightbox.find('.lb-next').css('opacity', '1');
-            this._rendererRef.setElementStyle(this._rightArrowElem.nativeElement, 'opacity', '1');
+            this._rendererRef.setStyle(this._rightArrowElem.nativeElement, 'opacity', '1');
           }
         }
       }
@@ -507,7 +507,7 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   private _enableKeyboardNav(): void {
-    this._event.keyup = this._rendererRef.listenGlobal('document', 'keyup', (event: any) => {
+    this._event.keyup = this._rendererRef.listen('document', 'keyup', (event: any) => {
       this._keyboardAction(event);
     });
   }

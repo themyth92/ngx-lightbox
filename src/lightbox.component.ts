@@ -1,9 +1,7 @@
-import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
-  Inject,
   Input,
   OnDestroy,
   OnInit,
@@ -53,7 +51,7 @@ import {
     '[class]': 'ui.classList'
   }
 })
-export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
+export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnInit {
   @Input() album: Array<IAlbum>;
   @Input() currentImageIndex: number;
   @Input() options: any;
@@ -72,14 +70,14 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
   private _cssValue: any;
   private _event: any;
   private _windowRef: any;
+  private _documentRef: Document;
   constructor(
     private _elemRef: ElementRef,
     private _rendererRef: Renderer2,
     private _lightboxEvent: LightboxEvent,
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
-    private _sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) private _documentRef: Document
+    private _sanitizer: DomSanitizer
   ) {
     // initialize data
     this.options = this.options || {};
@@ -118,7 +116,8 @@ export class LightboxComponent implements AfterViewInit, OnDestroy, OnInit {
       .subscribe((event: IEvent) => this._onReceivedEvent(event));
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
+    this._documentRef = window.document;
     this.album.forEach(album => {
       if (album.caption) {
         album.caption = this._sanitizer.sanitize(SecurityContext.HTML, album.caption);

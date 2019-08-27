@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/themyth92/ngx-lightbox.svg?branch=master)](https://travis-ci.org/themyth92/ngx-lightbox)
 
 # Ngx-Lightbox
-A [lighbox2](https://github.com/lokesh/lightbox2) implementation port to use with new Angular without the need for jQuery
+A [lightbox2](https://github.com/lokesh/lightbox2) implementation port to use with new Angular without the need for jQuery
 
 ## Version
 - For Angular 5, 6, 7, please use ngx-lightbox 1.x.x. `npm install ngx-lightbox@1.2.0`
@@ -149,9 +149,9 @@ enableTransition | **true** | Transition animation between images will be disabl
 import { LightboxConfig } from 'ngx-lightbox';
 
 export class AppComponent {
-  constructor(private _lighboxConfig: LightboxConfig) {
+  constructor(private _lightboxConfig: LightboxConfig) {
     // override default config
-    _lighboxConfig.fadeDuration = 1;
+    _lightboxConfig.fadeDuration = 1;
   }
 }
 ```
@@ -161,7 +161,7 @@ export class AppComponent {
 import { LightboxConfig, Lightbox } from 'ngx-lightbox';
 
 export class AppComponent {
-  constructor(private _lighboxConfig: LightboxConfig, private _lightbox: Lightbox) {}
+  constructor(private _lightboxConfig: LightboxConfig, private _lightbox: Lightbox) {}
   open(index: number) {
     // override the default config on second parameter
     this._lightbox.open(this._albums, index, { wrapAround: true, showImageNumberLabel: true });

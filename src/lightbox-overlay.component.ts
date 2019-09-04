@@ -7,8 +7,7 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  Renderer2,
-  OnInit,
+  Renderer2
 } from '@angular/core';
 
 import { IEvent, LIGHTBOX_EVENT, LightboxEvent } from './lightbox-event.service';
@@ -20,7 +19,7 @@ import { IEvent, LIGHTBOX_EVENT, LightboxEvent } from './lightbox-event.service'
     '[class]': 'classList'
   }
 })
-export class LightboxOverlayComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LightboxOverlayComponent implements AfterViewInit, OnDestroy {
   @Input() options: any;
   @Input() cmpRef: any;
   public classList;
@@ -33,16 +32,13 @@ export class LightboxOverlayComponent implements OnInit, AfterViewInit, OnDestro
   ) {
     this.classList = 'lightboxOverlay animation fadeInOverlay';
     this._subscription = this._lightboxEvent.lightboxEvent$.subscribe((event: IEvent) => this._onReceivedEvent(event));
+    this._documentRef = window.document;
   }
 
   @HostListener('click')
   public close(): void {
     // broadcast to itself and all others subscriber including the components
     this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.CLOSE, data: null });
-  }
-
-  ngOnInit() {
-    this._documentRef = window.document;
   }
 
   public ngAfterViewInit(): void {

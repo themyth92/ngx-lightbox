@@ -114,10 +114,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     this._lightboxElem = this._elemRef;
     this._event.subscription = this._lightboxEvent.lightboxEvent$
       .subscribe((event: IEvent) => this._onReceivedEvent(event));
+    this._documentRef = window.document;
   }
 
   ngOnInit(): void {
-    this._documentRef = window.document;
     this.album.forEach(album => {
       if (album.caption) {
         album.caption = this._sanitizer.sanitize(SecurityContext.HTML, album.caption);

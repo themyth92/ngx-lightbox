@@ -1,15 +1,13 @@
 import { Subscription } from 'rxjs';
 
-import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
   HostListener,
-  Inject,
   Input,
   OnDestroy,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 
 import { IEvent, LIGHTBOX_EVENT, LightboxEvent } from './lightbox-event.service';
@@ -26,14 +24,15 @@ export class LightboxOverlayComponent implements AfterViewInit, OnDestroy {
   @Input() cmpRef: any;
   public classList;
   private _subscription: Subscription;
+  private _documentRef: Document;
   constructor(
     private _elemRef: ElementRef,
     private _rendererRef: Renderer2,
-    private _lightboxEvent: LightboxEvent,
-    @Inject(DOCUMENT) private _documentRef: Document
+    private _lightboxEvent: LightboxEvent
   ) {
     this.classList = 'lightboxOverlay animation fadeInOverlay';
     this._subscription = this._lightboxEvent.lightboxEvent$.subscribe((event: IEvent) => this._onReceivedEvent(event));
+    this._documentRef = window.document;
   }
 
   @HostListener('click')

@@ -402,7 +402,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   private _end(): void {
     this.ui.classList = 'lightbox animation fadeOut';
     if (this.options.disableScrolling) {
-      this._rendererRef.addClass(this._documentRef.documentElement, 'lb-disable-scrolling');
+      this._rendererRef.removeClass(this._documentRef.documentElement, 'lb-disable-scrolling');
     }
     setTimeout(() => {
       this.cmpRef.destroy();

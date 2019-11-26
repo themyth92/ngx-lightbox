@@ -291,7 +291,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     const newHeight = imageHeight + this._cssValue.containerTopPadding + this._cssValue.containerBottomPadding +
       this._cssValue.imageBorderWidthTop + this._cssValue.imageBorderWidthBottom;
 
-    if (oldWidth !== newWidth || oldHeight !== newHeight) {
+    // make sure that distances are large enough for transitionend event to be fired, at least 5px.
+    if (Math.abs(oldWidth - newWidth) + Math.abs(oldHeight - newHeight) > 5) {
       this._rendererRef.setStyle(this._outerContainerElem.nativeElement, 'width', `${newWidth}px`);
       this._rendererRef.setStyle(this._outerContainerElem.nativeElement, 'height', `${newHeight}px`);
 

@@ -477,9 +477,9 @@ acorn-dynamic-import@^4.0.0:
   integrity sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==
 
 acorn@^6.0.5, acorn@^6.2.1:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
-  integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 after@0.8.2:
   version "0.8.2"
@@ -4245,10 +4245,10 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ngx-lightbox@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.0.1.tgz#7e2d358da816a913b63a1e5b0bf96477eead8c32"
-  integrity sha512-/NBf70H47/zYvxtR8fnJgnG0N7LS+V4j92MC/gTibyp78DF4wTR9i3WA2Ox6lKTP0E5CVHg1NqQS8FyWqW/QPw==
+ngx-lightbox@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.1.2.tgz#e00204fd14aa041a5a50f4959dc71e7c2c1c3127"
+  integrity sha512-l2xBjcYGsU4+5aK7MkNbKGfTbuO3E8EBaCXXTsWnzP5gX+CBK4WEJPEgU0u4YvIwt4n2/JX6a9+lJwicSPjkMA==
 
 nice-try@^1.0.4:
   version "1.0.5"

@@ -21,12 +21,12 @@ import {
 
 @Component({
   template: `
-    <div class="lb-outerContainer transition" #outerContainer>
-      <div class="lb-container" #container>
-        <img class="lb-image" [src]="album[currentImageIndex].src" class="lb-image animation fadeIn" [hidden]="ui.showReloader" #image>
+    <div class="lb-outerContainer transition" #outerContainer id="outerContainer">
+      <div class="lb-container" #container id="container">
+        <img class="lb-image" id="image" [src]="album[currentImageIndex].src" class="lb-image animation fadeIn" [hidden]="ui.showReloader" #image>
         <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
           <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
-          <a class="lb-next"[hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
+          <a class="lb-next" [hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
         </div>
         <div class="lb-loader" [hidden]="!ui.showReloader" (click)="close($event)">
           <a class="lb-cancel"></a>
@@ -40,8 +40,18 @@ import {
           </span>
           <span class="lb-number animation fadeIn" [hidden]="!ui.showPageNumber" #number>{{ content.pageNumber }}</span>
         </div>
-        <div class="lb-closeContainer">
-          <a class="lb-close" (click)="close($event)"></a>
+        <div class="lb-controlContainer">
+          <div class="lb-closeContainer">
+            <a class="lb-close" (click)="close($event)"></a>
+          </div>
+          <div class="lb-turnContainer">
+            <a class="lb-turnLeft" (click)="control($event)"></a>
+            <a class="lb-turnRight" (click)="control($event)"></a>
+          </div>
+          <div class="lb-zoomContainer">
+            <a class="lb-zoomOut" (click)="control($event)"></a>
+            <a class="lb-zoomIn" (click)="control($event)"></a>
+          </div>
         </div>
       </div>
     </div>`,
@@ -71,6 +81,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   private _event: any;
   private _windowRef: any;
   private _documentRef: Document;
+  private rotate: number;
   constructor(
     private _elemRef: ElementRef,
     private _rendererRef: Renderer2,
@@ -115,6 +126,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     this._event.subscription = this._lightboxEvent.lightboxEvent$
       .subscribe((event: IEvent) => this._onReceivedEvent(event));
     this._documentRef = window.document;
+    this.rotate = 0;
   }
 
   ngOnInit(): void {
@@ -161,6 +173,84 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       $event.target.classList.contains('lb-close')) {
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.CLOSE, data: null });
     }
+  }
+
+  public control($event: any): void {
+    $event.stopPropagation();
+    if ($event.target.classList.contains('lb-turnLeft')) {
+      if (this.rotate == -270)
+        this.rotate = 0;
+      else
+        this.rotate = this.rotate - 90;
+      this._rotateContainer();
+      this._calcTransformPoint();
+      document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
+      document.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ROTATE_LEFT, data: null });
+    } else if ($event.target.classList.contains('lb-turnRight')) {
+      this.rotate = this.rotate + 90;
+      if (this.rotate == 270)
+        this.rotate = 0;
+      this._rotateContainer();
+      this._calcTransformPoint();
+      document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
+      document.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ROTATE_RIGHT, data: null });
+    } else if ($event.target.classList.contains('lb-zoomOut')) {
+      var height = parseInt(document.getElementById('outerContainer').style.height) / 1.5;
+      var width = parseInt(document.getElementById('outerContainer').style.width) / 1.5;
+      document.getElementById('outerContainer').style.height = height + "px";
+      document.getElementById('outerContainer').style.width = width + "px";
+      var height = parseInt(document.getElementById('image').style.height) / 1.5;
+      var width = parseInt(document.getElementById('image').style.width) / 1.5;
+      document.getElementById('image').style.height = height + "px";
+      document.getElementById('image').style.width = width + "px";
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ZOOM_OUT, data: null });
+    } else if ($event.target.classList.contains('lb-zoomIn')) {
+      var height = parseInt(document.getElementById('outerContainer').style.height) * 1.5;
+      var width = parseInt(document.getElementById('outerContainer').style.width) * 1.5;
+      document.getElementById('outerContainer').style.height = height + "px";
+      document.getElementById('outerContainer').style.width = width + "px";
+      var height = parseInt(document.getElementById('image').style.height) * 1.5;
+      var width = parseInt(document.getElementById('image').style.width) * 1.5;
+      document.getElementById('image').style.height = height + "px";
+      document.getElementById('image').style.width = width + "px";
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ZOOM_IN, data: null });
+    }
+  }
+
+  private _rotateContainer(): void {
+    let temp = this.rotate;
+    if (temp < 0)
+      temp *= -1;
+    if (temp / 90 % 4 == 1 || temp / 90 % 4 == 3) {
+      document.getElementById('outerContainer').style.height = document.getElementById('image').style.width;
+      document.getElementById('outerContainer').style.width = document.getElementById('image').style.height;
+      document.getElementById('container').style.height = document.getElementById('image').style.width;
+      document.getElementById('container').style.width = document.getElementById('image').style.height;
+    } else {
+      document.getElementById('outerContainer').style.height = document.getElementById('image').style.height;
+      document.getElementById('outerContainer').style.width = document.getElementById('image').style.width;
+      document.getElementById('container').style.height = document.getElementById('image').style.width;
+      document.getElementById('container').style.width = document.getElementById('image').style.height;
+    }
+  }
+
+  private _resetImage(): void {
+    this.rotate = 0;
+    document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
+    document.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+  }
+
+  private _calcTransformPoint(): void {
+    var height = parseInt(document.getElementById('image').style.height);
+    var width = parseInt(document.getElementById('image').style.width);
+    if (this.rotate == 90 || this.rotate == -270)
+      document.getElementById('image').style.transformOrigin = (height / 2) + "px " + (height / 2) + "px";
+    else if (this.rotate == 180 || this.rotate == -180)
+      document.getElementById('image').style.transformOrigin = (width / 2) + "px " + (height / 2) + "px";
+    else if (this.rotate == 270 || this.rotate == -90)
+      document.getElementById('image').style.transformOrigin = (width / 2) + "px " + (width / 2) + "px";
   }
 
   public nextImage(): void {
@@ -432,6 +522,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   }
 
   private _changeImage(newIndex: number): void {
+    this._resetImage();
     this.currentImageIndex = newIndex;
     this._hideImage();
     this._registerImageLoadingEvent();

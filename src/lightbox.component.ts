@@ -44,11 +44,11 @@ import {
           <div class="lb-closeContainer">
             <a class="lb-close" (click)="close($event)"></a>
           </div>
-          <div class="lb-turnContainer">
+          <div class="lb-turnContainer" [hidden]="!ui.showRotateButton">
             <a class="lb-turnLeft" (click)="control($event)"></a>
             <a class="lb-turnRight" (click)="control($event)"></a>
           </div>
-          <div class="lb-zoomContainer">
+          <div class="lb-zoomContainer" [hidden]="!ui.showZoomButton">
             <a class="lb-zoomOut" (click)="control($event)"></a>
             <a class="lb-zoomIn" (click)="control($event)"></a>
           </div>
@@ -109,6 +109,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       showLeftArrow: false,
       showRightArrow: false,
       showArrowNav: false,
+
+      //control the appear of the zoom and rotate buttons
+      showZoomButton: false,
+      showRotateButton: false,
 
       // control whether to show the
       // page number or not
@@ -178,10 +182,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   public control($event: any): void {
     $event.stopPropagation();
     if ($event.target.classList.contains('lb-turnLeft')) {
-      if (this.rotate == -270)
-        this.rotate = 0;
-      else
-        this.rotate = this.rotate - 90;
+      this.rotate = this.rotate - 90;
       this._rotateContainer();
       this._calcTransformPoint();
       document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
@@ -189,8 +190,6 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ROTATE_LEFT, data: null });
     } else if ($event.target.classList.contains('lb-turnRight')) {
       this.rotate = this.rotate + 90;
-      if (this.rotate == 270)
-        this.rotate = 0;
       this._rotateContainer();
       this._calcTransformPoint();
       document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
@@ -245,11 +244,14 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   private _calcTransformPoint(): void {
     var height = parseInt(document.getElementById('image').style.height);
     var width = parseInt(document.getElementById('image').style.width);
-    if (this.rotate == 90 || this.rotate == -270)
+    var temp = this.rotate % 360;
+    if (temp < 0)
+      temp = 360 + temp;
+    if (temp == 90)
       document.getElementById('image').style.transformOrigin = (height / 2) + "px " + (height / 2) + "px";
-    else if (this.rotate == 180 || this.rotate == -180)
+    else if (temp == 180)
       document.getElementById('image').style.transformOrigin = (width / 2) + "px " + (height / 2) + "px";
-    else if (this.rotate == 270 || this.rotate == -90)
+    else if (temp == 270)
       document.getElementById('image').style.transformOrigin = (width / 2) + "px " + (width / 2) + "px";
   }
 
@@ -436,6 +438,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
 
     // position the image according to user's option
     this._positionLightBox();
+
+    // update Controls visibility
+    this.ui.showZoomButton = this.options.showZoom;
+    this.ui.showRotateButton = this.options.showRotate;
   }
 
   private _positionLightBox(): void {

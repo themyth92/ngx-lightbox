@@ -16,7 +16,11 @@ export interface IAlbum {
 export const LIGHTBOX_EVENT = {
   CHANGE_PAGE: 1,
   CLOSE: 2,
-  OPEN: 3
+  OPEN: 3,
+  ZOOM_IN: 4,
+  ZOOM_OUT: 5,
+  ROTATE_LEFT: 6,
+  ROTATE_RIGHT: 7
 };
 
 @Injectable()

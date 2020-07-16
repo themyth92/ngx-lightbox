@@ -3804,9 +3804,9 @@ lodash.tail@^4.1.1:
   integrity sha1-0jM6NtnncXyK0vfKyv7HwytERmQ=
 
 lodash@^4.0.0, lodash@^4.0.1, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.4, lodash@^4.17.5:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 log-symbols@^2.1.0:
   version "2.2.0"
@@ -4245,10 +4245,10 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ngx-lightbox@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.0.1.tgz#7e2d358da816a913b63a1e5b0bf96477eead8c32"
-  integrity sha512-/NBf70H47/zYvxtR8fnJgnG0N7LS+V4j92MC/gTibyp78DF4wTR9i3WA2Ox6lKTP0E5CVHg1NqQS8FyWqW/QPw==
+ngx-lightbox@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.1.2.tgz#e00204fd14aa041a5a50f4959dc71e7c2c1c3127"
+  integrity sha512-l2xBjcYGsU4+5aK7MkNbKGfTbuO3E8EBaCXXTsWnzP5gX+CBK4WEJPEgU0u4YvIwt4n2/JX6a9+lJwicSPjkMA==
 
 nice-try@^1.0.4:
   version "1.0.5"

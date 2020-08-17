@@ -361,7 +361,7 @@ html.lb-disable-scrolling {
   transition-timing-function: ease;
 }
 
-img {
+.lb-image {
   -webkit-transition-duration: 0.5s;
       -moz-transition-duration: 0.5s;
       -o-transition-duration: 0.5s;

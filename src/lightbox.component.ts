@@ -439,9 +439,11 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     // position the image according to user's option
     this._positionLightBox();
 
-    // update Controls visibility
-    this.ui.showZoomButton = this.options.showZoom;
-    this.ui.showRotateButton = this.options.showRotate;
+    // update controls visibility on next view generation
+    setTimeout(() => {
+      this.ui.showZoomButton = this.options.showZoom;
+      this.ui.showRotateButton = this.options.showRotate;
+    }, 0);
   }
 
   private _positionLightBox(): void {

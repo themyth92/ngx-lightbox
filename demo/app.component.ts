@@ -55,7 +55,9 @@ export class AppComponent {
     this._lightbox.open(this.albums, index, {
       wrapAround: true,
       showImageNumberLabel: true,
-      disableScrolling: true
+      disableScrolling: true,
+      showZoom: true,
+      showRotate: true
     });
   }
 

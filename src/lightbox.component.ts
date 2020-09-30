@@ -44,6 +44,9 @@ import {
           <div class="lb-closeContainer">
             <a class="lb-close" (click)="close($event)"></a>
           </div>
+          <div class="lb-deleteContainer" [hidden]="!ui.showDeleteButton">
+            <a class="lb-delete" (click)="control($event)"></a>
+          </div>
           <div class="lb-turnContainer" [hidden]="!ui.showRotateButton">
             <a class="lb-turnLeft" (click)="control($event)"></a>
             <a class="lb-turnRight" (click)="control($event)"></a>
@@ -113,6 +116,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       //control the appear of the zoom and rotate buttons
       showZoomButton: false,
       showRotateButton: false,
+      showDeleteButton: false,
 
       // control whether to show the
       // page number or not
@@ -215,6 +219,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       document.getElementById('image').style.height = height + "px";
       document.getElementById('image').style.width = width + "px";
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ZOOM_IN, data: null });
+    } else if ($event.target.classList.contains('lb-delete')) {
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.DELETE, data: this.album[this.currentImageIndex].src });
     }
   }
 
@@ -443,6 +449,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     setTimeout(() => {
       this.ui.showZoomButton = this.options.showZoom;
       this.ui.showRotateButton = this.options.showRotate;
+      this.ui.showDeleteButton = this.options.showDelete;
     }, 0);
   }
 

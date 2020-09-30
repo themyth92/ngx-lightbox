@@ -20,7 +20,8 @@ export const LIGHTBOX_EVENT = {
   ZOOM_IN: 4,
   ZOOM_OUT: 5,
   ROTATE_LEFT: 6,
-  ROTATE_RIGHT: 7
+  ROTATE_RIGHT: 7,
+  DELETE: 8,
 };
 
 @Injectable()

@@ -16,6 +16,7 @@ export class LightboxConfig {
   public albumLabel: string;
   public showZoom: boolean;
   public showRotation: boolean;
+  public showDelete: boolean;
   constructor() {
     this.fadeDuration = 0.7;
     this.resizeDuration = 0.5;
@@ -31,5 +32,6 @@ export class LightboxConfig {
     this.albumLabel = 'Image %1 of %2';
     this.showZoom = false;
     this.showRotation = false;
+    this.showDelete = false;
   }
 }

@@ -52,6 +52,8 @@ describe('[ Unit - LightboxComponent ]', () => {
       showArrowNav: false,
       showPageNumber: false,
       showCaption: false,
+      showZoomButton: false,
+      showRotateButton: false,
       classList: 'lightbox animation fadeIn'
     });
     expect(fixture.componentInstance.content).toEqual({ pageNumber: '' });
@@ -109,6 +111,8 @@ describe('[ Unit - LightboxComponent ]', () => {
         showRightArrow: false,
         showArrowNav: false,
         showPageNumber: false,
+        showZoomButton: false,
+        showRotateButton: false,
         showCaption: false,
         classList: 'lightbox animation fadeIn'
       });
@@ -123,6 +127,8 @@ describe('[ Unit - LightboxComponent ]', () => {
       expect(fixture.componentInstance.ui).toEqual({
         showReloader: true,
         showLeftArrow: false,
+        showZoomButton: false,
+        showRotateButton: false,
         showRightArrow: false,
         showArrowNav: false,
         showPageNumber: false,
@@ -144,6 +150,8 @@ describe('[ Unit - LightboxComponent ]', () => {
         showLeftArrow: false,
         showRightArrow: false,
         showArrowNav: false,
+        showZoomButton: false,
+        showRotateButton: false,
         showPageNumber: false,
         showCaption: false,
         classList: 'lightbox animation fadeIn'
@@ -162,6 +170,8 @@ describe('[ Unit - LightboxComponent ]', () => {
         showReloader: true,
         showLeftArrow: false,
         showRightArrow: false,
+        showZoomButton: false,
+        showRotateButton: false,
         showArrowNav: false,
         showPageNumber: false,
         showCaption: false,

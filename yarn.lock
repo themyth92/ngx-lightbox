@@ -4245,10 +4245,10 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ngx-lightbox@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.0.1.tgz#7e2d358da816a913b63a1e5b0bf96477eead8c32"
-  integrity sha512-/NBf70H47/zYvxtR8fnJgnG0N7LS+V4j92MC/gTibyp78DF4wTR9i3WA2Ox6lKTP0E5CVHg1NqQS8FyWqW/QPw==
+ngx-lightbox@^2.1.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-2.2.2.tgz#09b020655e449ca82a68c9438c937f5922f9efea"
+  integrity sha512-H6UYyWEemVh19DPs6afnGK1Bh4368SIt42LB2xKBAr7zNOdIvjmLv/p67KU4nvt+rOkEY1+QiQuNaxRNZRs75Q==
 
 nice-try@^1.0.4:
   version "1.0.5"

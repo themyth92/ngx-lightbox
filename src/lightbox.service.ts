@@ -2,6 +2,7 @@ import {
   ApplicationRef,
   ComponentFactoryResolver,
   ComponentRef,
+  Inject,
   Injectable,
   Injector
 } from '@angular/core';
@@ -9,25 +10,23 @@ import { LightboxComponent } from './lightbox.component';
 import { LightboxConfig } from './lightbox-config.service';
 import { LightboxEvent, LIGHTBOX_EVENT, IAlbum } from './lightbox-event.service';
 import { LightboxOverlayComponent } from './lightbox-overlay.component';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class Lightbox {
-  private _documentRef: Document;
   constructor(
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _injector: Injector,
     private _applicationRef: ApplicationRef,
     private _lightboxConfig: LightboxConfig,
-    private _lightboxEvent: LightboxEvent
-
-  ) {
-    this._documentRef = window.document;
-  }
+    private _lightboxEvent: LightboxEvent,
+    @Inject(DOCUMENT) private _documentRef: Document
+  ) { }
 
   open(album: Array<IAlbum>, curIndex = 0, options = {}): void {
     const overlayComponentRef = this._createComponent(LightboxOverlayComponent);
     const componentRef = this._createComponent(LightboxComponent);
-    const newOptions = {};
+    const newOptions: Partial<LightboxConfig> = {};
 
     // broadcast open event
     this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.OPEN });
@@ -56,8 +55,9 @@ export class Lightbox {
         this._applicationRef.detachView(componentRef.hostView);
       });
 
-      this._documentRef.querySelector('body').appendChild(overlayComponentRef.location.nativeElement);
-      this._documentRef.querySelector('body').appendChild(componentRef.location.nativeElement);
+      const containerElement = newOptions.containerElementResolver(this._documentRef);
+      containerElement.appendChild(overlayComponentRef.location.nativeElement);
+      containerElement.appendChild(componentRef.location.nativeElement);
     });
   }
 

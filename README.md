@@ -150,6 +150,8 @@ Available options based on lightbox2 options
 | enableTransition            | **true**         | Transition animation between images will be disabled if this flag set to **false**                                                                                                                                                          |
 | showZoom            | **false**         | Zoom Buttons will be shown if this flag set to **true**                                                                                                                                                          |
 | showRotate            | **false**         | Rotate Buttons will be shown if this flag set to **true**                                                                                                                                                                                                    |
+| containerElementResolver | () => document.body | Resolves the element that will contain the lightbox | 
+
 
 **NOTE**: You can either override default config or during a specific opening window
 
@@ -178,6 +180,25 @@ export class AppComponent {
     this._lightbox.open(this._albums, index, { wrapAround: true, showImageNumberLabel: true });
   }
 }
+```
+
+### Overriding lightbox parent elements
+
+If you want to use any other parent element than your `<body>`, please override the `containerElementResolver` property of your `LightboxConfig`.
+This can be used, e.g. if you are opening the lightbox from within a Shadow DOM based web component.
+
+```js
+export class MyLightBoxTrigger {
+  constructor(
+    private _lightbox: Lightbox,
+    private _lighboxConfig: LightboxConfig,
+  ) {
+    _lighboxConfig.containerElementResolver = (doc: Document) => doc.getElementById('my-lightbox-host');
+  }
+
+  open(index: number): void {
+    this._lightbox.open(this.images, index); // will put the lightbox child into e.g. <div id="my-lightbox-host"></div>
+  }
 ```
 
 ## Angular Universal

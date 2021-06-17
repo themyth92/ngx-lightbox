@@ -1,6 +1,6 @@
 {
   "name": "ngx-lightbox",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
   "dependencies": {},

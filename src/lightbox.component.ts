@@ -193,35 +193,35 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       this.rotate = this.rotate - 90;
       this._rotateContainer();
       this._calcTransformPoint();
-      document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
-      document.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+      this._documentRef.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
+      this._documentRef.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ROTATE_LEFT, data: null });
     } else if ($event.target.classList.contains('lb-turnRight')) {
       this.rotate = this.rotate + 90;
       this._rotateContainer();
       this._calcTransformPoint();
-      document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
-      document.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+      this._documentRef.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
+      this._documentRef.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ROTATE_RIGHT, data: null });
     } else if ($event.target.classList.contains('lb-zoomOut')) {
-      height = parseInt(document.getElementById('outerContainer').style.height, 10) / 1.5;
-      width = parseInt(document.getElementById('outerContainer').style.width, 10) / 1.5;
-      document.getElementById('outerContainer').style.height = height + 'px';
-      document.getElementById('outerContainer').style.width = width + 'px';
-      height = parseInt(document.getElementById('image').style.height, 10) / 1.5;
-      width = parseInt(document.getElementById('image').style.width, 10) / 1.5;
-      document.getElementById('image').style.height = height + 'px';
-      document.getElementById('image').style.width = width + 'px';
+      height = parseInt(this._documentRef.getElementById('outerContainer').style.height, 10) / 1.5;
+      width = parseInt(this._documentRef.getElementById('outerContainer').style.width, 10) / 1.5;
+      this._documentRef.getElementById('outerContainer').style.height = height + 'px';
+      this._documentRef.getElementById('outerContainer').style.width = width + 'px';
+      height = parseInt(this._documentRef.getElementById('image').style.height, 10) / 1.5;
+      width = parseInt(this._documentRef.getElementById('image').style.width, 10) / 1.5;
+      this._documentRef.getElementById('image').style.height = height + 'px';
+      this._documentRef.getElementById('image').style.width = width + 'px';
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ZOOM_OUT, data: null });
     } else if ($event.target.classList.contains('lb-zoomIn')) {
-      height = parseInt(document.getElementById('outerContainer').style.height, 10) * 1.5;
-      width = parseInt(document.getElementById('outerContainer').style.width, 10) * 1.5;
-      document.getElementById('outerContainer').style.height = height + 'px';
-      document.getElementById('outerContainer').style.width = width + 'px';
-      height = parseInt(document.getElementById('image').style.height, 10) * 1.5;
-      width = parseInt(document.getElementById('image').style.width, 10) * 1.5;
-      document.getElementById('image').style.height = height + 'px';
-      document.getElementById('image').style.width = width + 'px';
+      height = parseInt(this._documentRef.getElementById('outerContainer').style.height, 10) * 1.5;
+      width = parseInt(this._documentRef.getElementById('outerContainer').style.width, 10) * 1.5;
+      this._documentRef.getElementById('outerContainer').style.height = height + 'px';
+      this._documentRef.getElementById('outerContainer').style.width = width + 'px';
+      height = parseInt(this._documentRef.getElementById('image').style.height, 10) * 1.5;
+      width = parseInt(this._documentRef.getElementById('image').style.width, 10) * 1.5;
+      this._documentRef.getElementById('image').style.height = height + 'px';
+      this._documentRef.getElementById('image').style.width = width + 'px';
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.ZOOM_IN, data: null });
     }
   }
@@ -232,37 +232,37 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       temp *= -1;
     }
     if (temp / 90 % 4 === 1 || temp / 90 % 4 === 3) {
-      document.getElementById('outerContainer').style.height = document.getElementById('image').style.width;
-      document.getElementById('outerContainer').style.width = document.getElementById('image').style.height;
-      document.getElementById('container').style.height = document.getElementById('image').style.width;
-      document.getElementById('container').style.width = document.getElementById('image').style.height;
+      this._documentRef.getElementById('outerContainer').style.height = this._documentRef.getElementById('image').style.width;
+      this._documentRef.getElementById('outerContainer').style.width = this._documentRef.getElementById('image').style.height;
+      this._documentRef.getElementById('container').style.height = this._documentRef.getElementById('image').style.width;
+      this._documentRef.getElementById('container').style.width = this._documentRef.getElementById('image').style.height;
     } else {
-      document.getElementById('outerContainer').style.height = document.getElementById('image').style.height;
-      document.getElementById('outerContainer').style.width = document.getElementById('image').style.width;
-      document.getElementById('container').style.height = document.getElementById('image').style.width;
-      document.getElementById('container').style.width = document.getElementById('image').style.height;
+      this._documentRef.getElementById('outerContainer').style.height = this._documentRef.getElementById('image').style.height;
+      this._documentRef.getElementById('outerContainer').style.width = this._documentRef.getElementById('image').style.width;
+      this._documentRef.getElementById('container').style.height = this._documentRef.getElementById('image').style.width;
+      this._documentRef.getElementById('container').style.width = this._documentRef.getElementById('image').style.height;
     }
   }
 
   private _resetImage(): void {
     this.rotate = 0;
-    document.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
-    document.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+    this._documentRef.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
+    this._documentRef.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
   }
 
   private _calcTransformPoint(): void {
-    let height = parseInt(document.getElementById('image').style.height, 10);
-    let width = parseInt(document.getElementById('image').style.width, 10);
+    let height = parseInt(this._documentRef.getElementById('image').style.height, 10);
+    let width = parseInt(this._documentRef.getElementById('image').style.width, 10);
     let temp = this.rotate % 360;
     if (temp < 0) {
       temp = 360 + temp;
     }
     if (temp === 90) {
-      document.getElementById('image').style.transformOrigin = (height / 2) + 'px ' + (height / 2) + 'px';
+      this._documentRef.getElementById('image').style.transformOrigin = (height / 2) + 'px ' + (height / 2) + 'px';
     } else if (temp === 180) {
-      document.getElementById('image').style.transformOrigin = (width / 2) + 'px ' + (height / 2) + 'px';
+      this._documentRef.getElementById('image').style.transformOrigin = (width / 2) + 'px ' + (height / 2) + 'px';
  } else if (temp === 270) {
-      document.getElementById('image').style.transformOrigin = (width / 2) + 'px ' + (width / 2) + 'px';
+      this._documentRef.getElementById('image').style.transformOrigin = (width / 2) + 'px ' + (width / 2) + 'px';
  }
   }
 

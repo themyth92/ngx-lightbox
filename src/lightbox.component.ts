@@ -95,7 +95,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
     private _sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) private _documentRef: Document
+    @Inject(DOCUMENT) private _documentRef
   ) {
     // initialize data
     this.options = this.options || {};

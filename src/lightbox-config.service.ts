@@ -16,7 +16,7 @@ export class LightboxConfig {
   public albumLabel: string;
   public showZoom: boolean;
   public showRotate: boolean;
-  public containerElementResolver: (document: Document) => HTMLElement;
+  public containerElementResolver: any;
 
   constructor() {
     this.fadeDuration = 0.7;

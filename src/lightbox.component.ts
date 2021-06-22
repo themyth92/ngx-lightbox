@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import {DOCUMENT} from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -11,15 +11,9 @@ import {
   SecurityContext,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-import {
-  IAlbum,
-  IEvent,
-  LIGHTBOX_EVENT,
-  LightboxEvent,
-  LightboxWindowRef,
-} from './lightbox-event.service';
+import {IAlbum, IEvent, LIGHTBOX_EVENT, LightboxEvent, LightboxWindowRef,} from './lightbox-event.service';
 
 @Component({
   template: `
@@ -30,7 +24,14 @@ import {
              [src]="album[currentImageIndex].src"
              class="lb-image animation fadeIn"
              [hidden]="ui.showReloader"
-             #image>
+             #image *ngIf="!needsIframe(album[currentImageIndex].src)">
+        <iframe class="lb-image"
+             id="iframe"
+             [src]="sanitizeUrl(album[currentImageIndex].src)"
+             class="lb-image lb-iframe animation fadeIn"
+             [hidden]="ui.showReloader"
+             #iframe *ngIf="needsIframe(album[currentImageIndex].src)">
+        </iframe>
         <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
           <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
           <a class="lb-next" [hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
@@ -80,6 +81,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   @ViewChild('navArrow', { static: false }) _navArrowElem: ElementRef;
   @ViewChild('dataContainer', { static: false }) _dataContainerElem: ElementRef;
   @ViewChild('image', { static: false }) _imageElem: ElementRef;
+  @ViewChild('iframe', { static: false }) _iframeElem: ElementRef;
   @ViewChild('caption', { static: false }) _captionElem: ElementRef;
   @ViewChild('number', { static: false }) _numberElem: ElementRef;
   public content: any;
@@ -147,6 +149,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     });
   }
 
+  sanitizeUrl(url): SafeResourceUrl {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
   public ngAfterViewInit(): void {
     // need to init css value here, after the view ready
     // actually these values are always 0
@@ -155,10 +161,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       containerRightPadding: Math.round(this._getCssStyleValue(this._containerElem, 'padding-right')),
       containerBottomPadding: Math.round(this._getCssStyleValue(this._containerElem, 'padding-bottom')),
       containerLeftPadding: Math.round(this._getCssStyleValue(this._containerElem, 'padding-left')),
-      imageBorderWidthTop: Math.round(this._getCssStyleValue(this._imageElem, 'border-top-width')),
-      imageBorderWidthBottom: Math.round(this._getCssStyleValue(this._imageElem, 'border-bottom-width')),
-      imageBorderWidthLeft: Math.round(this._getCssStyleValue(this._imageElem, 'border-left-width')),
-      imageBorderWidthRight: Math.round(this._getCssStyleValue(this._imageElem, 'border-right-width'))
+      imageBorderWidthTop: Math.round(this._getCssStyleValue(this._imageElem || this._iframeElem, 'border-top-width')),
+      imageBorderWidthBottom: Math.round(this._getCssStyleValue(this._imageElem || this._iframeElem, 'border-bottom-width')),
+      imageBorderWidthLeft: Math.round(this._getCssStyleValue(this._imageElem || this._iframeElem, 'border-left-width')),
+      imageBorderWidthRight: Math.round(this._getCssStyleValue(this._imageElem || this._iframeElem, 'border-right-width'))
     };
 
     if (this._validateInputData()) {
@@ -246,8 +252,12 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
 
   private _resetImage(): void {
     this.rotate = 0;
-    this._documentRef.getElementById('image').style.transform = `rotate(${this.rotate}deg)`;
-    this._documentRef.getElementById('image').style.webkitTransform = `rotate(${this.rotate}deg)`;
+    const image = this._documentRef.getElementById('image');
+    if (image) {
+      image.style.transform = `rotate(${this.rotate}deg)`;
+      image.style.webkitTransform = `rotate(${this.rotate}deg)`;
+    }
+
   }
 
   private _calcTransformPoint(): void {
@@ -315,13 +325,21 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   }
 
   private _registerImageLoadingEvent(): void {
+    const src: any = this.album[this.currentImageIndex].src;
+
+    if (this.needsIframe(src)) {
+      setTimeout( () => {
+        this._onLoadImageSuccess();
+      });
+      return;
+    }
+
     const preloader = new Image();
 
     preloader.onload = () => {
       this._onLoadImageSuccess();
     }
 
-    const src: any = this.album[this.currentImageIndex].src;
     preloader.src = this._sanitizer.sanitize(SecurityContext.URL, src);
   }
 
@@ -344,8 +362,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     let naturalImageHeight;
 
     // set default width and height of image to be its natural
-    imageWidth = naturalImageWidth = this._imageElem.nativeElement.naturalWidth;
-    imageHeight = naturalImageHeight = this._imageElem.nativeElement.naturalHeight;
+    imageWidth = naturalImageWidth = this._imageElem ? this._imageElem.nativeElement.naturalWidth : this._windowRef.innerWidth * .8;
+    imageHeight = naturalImageHeight = this._imageElem ? this._imageElem.nativeElement.naturalHeight : this._windowRef.innerHeight * .8;
     if (this.options.fitImageInViewPort) {
       windowWidth = this._windowRef.innerWidth;
       windowHeight = this._windowRef.innerHeight;
@@ -365,8 +383,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
         }
       }
 
-      this._rendererRef.setStyle(this._imageElem.nativeElement, 'width', `${imageWidth}px`);
-      this._rendererRef.setStyle(this._imageElem.nativeElement, 'height', `${imageHeight}px`);
+      this._rendererRef.setStyle((this._imageElem || this._iframeElem).nativeElement, 'width', `${imageWidth}px`);
+      this._rendererRef.setStyle((this._imageElem || this._iframeElem).nativeElement, 'height', `${imageHeight}px`);
     }
 
     this._sizeContainer(imageWidth, imageHeight);
@@ -495,9 +513,9 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       '-webkit-animation-duration', `${fadeDuration}s`);
     this._rendererRef.setStyle(this._dataContainerElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._imageElem.nativeElement,
+    this._rendererRef.setStyle((this._imageElem || this._iframeElem).nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._imageElem.nativeElement,
+    this._rendererRef.setStyle((this._imageElem || this._iframeElem).nativeElement,
       'animation-duration', `${fadeDuration}s`);
     this._rendererRef.setStyle(this._captionElem.nativeElement,
       '-webkit-animation-duration', `${fadeDuration}s`);
@@ -666,5 +684,13 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       default:
         break;
     }
+  }
+
+  needsIframe(src: string) {
+    const sanitizedUrl = this._sanitizer.sanitize(SecurityContext.URL, src);
+    if (sanitizedUrl.match(/\.pdf$/)) {
+      return true;
+    }
+    return false;
   }
 }

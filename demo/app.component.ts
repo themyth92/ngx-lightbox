@@ -44,6 +44,11 @@ export class AppComponent {
       this.albums.push(album);
     }
 
+    this.albums.push({
+      src: 'demo/img/image5.pdf',
+      thumb: 'demo/img/image5-thumb.jpg'
+    });
+
     // set default config
     this._lighboxConfig.fadeDuration = 1;
   }

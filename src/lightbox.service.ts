@@ -20,7 +20,7 @@ export class Lightbox {
     private _applicationRef: ApplicationRef,
     private _lightboxConfig: LightboxConfig,
     private _lightboxEvent: LightboxEvent,
-    @Inject(DOCUMENT) private _documentRef: Document
+    @Inject(DOCUMENT) private _documentRef
   ) { }
 
   open(album: Array<IAlbum>, curIndex = 0, options = {}): void {

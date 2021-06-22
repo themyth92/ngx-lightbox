@@ -203,13 +203,7 @@ export class MyLightBoxTrigger {
 
 ## Angular Universal
 
-For this to work with Angular Universal, you need to have a global window object defined in your `server.js` (the one in your Angular project derived from initiating an ssr project using Angular Universal) using any `window` npm lib like [window](https://www.npmjs.com/package/window) or [domino](https://www.npmjs.com/package/domino)
-
-Add the below to your `server.js`
-
-```js
-global['window'] = window;
-```
+This project works with universal out of the box with no additional configuration.
 
 ## License
 

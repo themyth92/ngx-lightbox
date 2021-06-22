@@ -46,7 +46,8 @@ export class AppComponent {
 
     this.albums.push({
       src: 'demo/img/image5.pdf',
-      thumb: 'demo/img/image5-thumb.jpg'
+      thumb: 'demo/img/image5-thumb.jpg',
+      iframe: true
     });
 
     // set default config

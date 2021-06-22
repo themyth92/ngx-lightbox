@@ -11,6 +11,7 @@ export interface IAlbum {
   src: string;
   caption?: string;
   thumb: string;
+  iframe?: boolean;
 }
 
 export const LIGHTBOX_EVENT = {

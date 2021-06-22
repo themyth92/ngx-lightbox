@@ -24,13 +24,13 @@ import {IAlbum, IEvent, LIGHTBOX_EVENT, LightboxEvent, LightboxWindowRef,} from 
              [src]="album[currentImageIndex].src"
              class="lb-image animation fadeIn"
              [hidden]="ui.showReloader"
-             #image *ngIf="!needsIframe(album[currentImageIndex].src)">
+             #image *ngIf="!album[currentImageIndex].iframe && !needsIframe(album[currentImageIndex].src)">
         <iframe class="lb-image"
              id="iframe"
              [src]="sanitizeUrl(album[currentImageIndex].src)"
              class="lb-image lb-iframe animation fadeIn"
              [hidden]="ui.showReloader"
-             #iframe *ngIf="needsIframe(album[currentImageIndex].src)">
+             #iframe *ngIf="album[currentImageIndex].iframe || needsIframe(album[currentImageIndex].src)">
         </iframe>
         <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
           <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
@@ -327,7 +327,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   private _registerImageLoadingEvent(): void {
     const src: any = this.album[this.currentImageIndex].src;
 
-    if (this.needsIframe(src)) {
+    if (this.album[this.currentImageIndex].iframe || this.needsIframe(src)) {
       setTimeout( () => {
         this._onLoadImageSuccess();
       });

@@ -97,7 +97,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
     private _sanitizer: DomSanitizer,
-    @Inject(DOCUMENT) private _documentRef: Document
+    @Inject(DOCUMENT) private _documentRef
   ) {
     // initialize data
     this.options = this.options || {};
@@ -686,7 +686,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     }
   }
 
-  needsIframe(src: string) {
+  public needsIframe(src: string) {
     const sanitizedUrl = this._sanitizer.sanitize(SecurityContext.URL, src);
     if (sanitizedUrl.match(/\.pdf$/)) {
       return true;
@@ -694,3 +694,4 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     return false;
   }
 }
+

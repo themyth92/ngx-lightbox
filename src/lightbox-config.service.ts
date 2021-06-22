@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 @Injectable()
 export class LightboxConfig {
   public fadeDuration: number;
@@ -16,7 +15,7 @@ export class LightboxConfig {
   public albumLabel: string;
   public showZoom: boolean;
   public showRotate: boolean;
-  public containerElementResolver: (document: Document) => HTMLElement;
+  public containerElementResolver: (document: any) => HTMLElement;
 
   constructor() {
     this.fadeDuration = 0.7;

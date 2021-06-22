@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 
 export interface IEvent {
   id: number;
@@ -44,6 +44,6 @@ function getWindow (): any {
 @Injectable()
 export class LightboxWindowRef {
   get nativeWindow (): any {
-    return getWindow();
+      return getWindow();
   }
 }

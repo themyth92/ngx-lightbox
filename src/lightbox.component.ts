@@ -687,8 +687,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   }
 
   public needsIframe(src: string) {
-    const sanitizedUrl = this._sanitizer.sanitize(SecurityContext.URL, src);
-    if (sanitizedUrl.match(/\.pdf$/)) {
+    // const sanitizedUrl = this._sanitizer.sanitize(SecurityContext.URL, src);
+    if (src.match(/\.pdf$/)) {
       return true;
     }
     return false;

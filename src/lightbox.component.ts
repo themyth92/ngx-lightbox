@@ -6,14 +6,22 @@ import {
   Inject,
   Input,
   OnDestroy,
-  OnInit,
+  OnInit, Pipe, PipeTransform,
   Renderer2,
   SecurityContext,
   ViewChild,
 } from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
 
 import {IAlbum, IEvent, LIGHTBOX_EVENT, LightboxEvent, LightboxWindowRef,} from './lightbox-event.service';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   template: `
@@ -27,7 +35,7 @@ import {IAlbum, IEvent, LIGHTBOX_EVENT, LightboxEvent, LightboxWindowRef,} from 
              #image *ngIf="!album[currentImageIndex].iframe && !needsIframe(album[currentImageIndex].src)">
         <iframe class="lb-image"
              id="iframe"
-             [src]="sanitizeUrl(album[currentImageIndex].src)"
+             [src]="album[currentImageIndex].src | safe"
              class="lb-image lb-iframe animation fadeIn"
              [hidden]="ui.showReloader"
              #iframe *ngIf="album[currentImageIndex].iframe || needsIframe(album[currentImageIndex].src)">
@@ -147,10 +155,6 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
         album.caption = this._sanitizer.sanitize(SecurityContext.HTML, album.caption);
       }
     });
-  }
-
-  sanitizeUrl(url): SafeResourceUrl {
-    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   public ngAfterViewInit(): void {

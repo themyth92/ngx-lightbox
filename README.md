@@ -150,6 +150,7 @@ Available options based on lightbox2 options
 | enableTransition            | **true**         | Transition animation between images will be disabled if this flag set to **false**                                                                                                                                                          |
 | showZoom            | **false**         | Zoom Buttons will be shown if this flag set to **true**                                                                                                                                                          |
 | showRotate            | **false**         | Rotate Buttons will be shown if this flag set to **true**                                                                                                                                                                                                    |
+| showDownloadButton  | **false**         | Download button will be shown if this flag set to **true**    |
 | containerElementResolver | () => document.body | Resolves the element that will contain the lightbox | 
 
 

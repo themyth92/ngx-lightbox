@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LightboxEvent, LightboxWindowRef, LIGHTBOX_EVENT } from './lightbox-event.service';
 import { LightboxComponent } from './lightbox.component';
 
@@ -35,7 +36,8 @@ describe('[ Unit - LightboxComponent ]', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ LightboxComponent ],
-      providers: [ LightboxEvent, LightboxWindowRef ]
+      providers: [ LightboxEvent, LightboxWindowRef ],
+      imports: [ HttpClientTestingModule ]
     });
     createComponent();
   });
@@ -54,6 +56,7 @@ describe('[ Unit - LightboxComponent ]', () => {
       showCaption: false,
       showZoomButton: false,
       showRotateButton: false,
+      showDownloadButton: false,
       classList: 'lightbox animation fadeIn'
     });
     expect(fixture.componentInstance.content).toEqual({ pageNumber: '' });
@@ -114,6 +117,7 @@ describe('[ Unit - LightboxComponent ]', () => {
         showZoomButton: false,
         showRotateButton: false,
         showCaption: false,
+        showDownloadButton: false,
         classList: 'lightbox animation fadeIn'
       });
       expect(lightboxEvent.broadcastLightboxEvent).toHaveBeenCalledTimes(1);
@@ -133,6 +137,7 @@ describe('[ Unit - LightboxComponent ]', () => {
         showArrowNav: false,
         showPageNumber: false,
         showCaption: false,
+        showDownloadButton: false,
         classList: 'lightbox animation fadeIn'
       });
       expect(lightboxEvent.broadcastLightboxEvent).toHaveBeenCalledTimes(1);
@@ -154,6 +159,7 @@ describe('[ Unit - LightboxComponent ]', () => {
         showRotateButton: false,
         showPageNumber: false,
         showCaption: false,
+        showDownloadButton: false,
         classList: 'lightbox animation fadeIn'
       });
       expect(lightboxEvent.broadcastLightboxEvent).toHaveBeenCalledTimes(1);
@@ -175,6 +181,7 @@ describe('[ Unit - LightboxComponent ]', () => {
         showArrowNav: false,
         showPageNumber: false,
         showCaption: false,
+        showDownloadButton: false,
         classList: 'lightbox animation fadeIn'
       });
       expect(lightboxEvent.broadcastLightboxEvent).toHaveBeenCalledTimes(1);

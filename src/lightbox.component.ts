@@ -1,4 +1,5 @@
 import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -12,6 +13,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileSaverService } from 'ngx-filesaver';
 
 import {
   IAlbum,
@@ -50,6 +52,9 @@ import {
         <div class="lb-controlContainer">
           <div class="lb-closeContainer">
             <a class="lb-close" (click)="close($event)"></a>
+          </div>
+          <div class="lb-downloadContainer" [hidden]="!ui.showDownloadButton">
+            <a class="lb-download" (click)="download($event)"></a>
           </div>
           <div class="lb-turnContainer" [hidden]="!ui.showRotateButton">
             <a class="lb-turnLeft" (click)="control($event)"></a>
@@ -94,6 +99,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     private _lightboxEvent: LightboxEvent,
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
+    private _http: HttpClient,
+    private _fileSaverService: FileSaverService,
     private _sanitizer: DomSanitizer,
     @Inject(DOCUMENT) private _documentRef
   ) {
@@ -125,6 +132,9 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       // page number or not
       showPageNumber: false,
       showCaption: false,
+
+      // control whether to show the download button or not
+      showDownloadButton: false,
       classList: 'lightbox animation fadeIn'
     };
 
@@ -183,6 +193,19 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       $event.target.classList.contains('lb-close')) {
       this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.CLOSE, data: null });
     }
+  }
+
+  public download($event: any): void {
+    $event.stopPropagation();
+    const url = this.album[this.currentImageIndex].src;
+    const parts = url.split('/');
+    const fileName = parts[parts.length - 1];
+
+    this._http.get(url, {
+      responseType: 'blob'
+    }).subscribe(res => {
+      this._fileSaverService.save(res, fileName);
+    });
   }
 
   public control($event: any): void {
@@ -454,6 +477,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     setTimeout(() => {
       this.ui.showZoomButton = this.options.showZoom;
       this.ui.showRotateButton = this.options.showRotate;
+      this.ui.showDownloadButton = this.options.showDownloadButton;
     }, 0);
   }
 

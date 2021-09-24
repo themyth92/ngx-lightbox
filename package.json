@@ -1,6 +1,6 @@
 {
-  "name": "ngx-lightbox",
-  "version": "2.4.0",
+  "name": "@piotrmocek/ngx-lightbox",
+  "version": "2.4.4",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
   "dependencies": {},
@@ -42,7 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/themyth92/ngx-lightbox.git"
+    "url": "git+https://github.com/piotrmocek/ngx-lightbox.git"
   },
   "keywords": [
     "lightbox2",
@@ -52,7 +52,7 @@
     "angular",
     "directives"
   ],
-  "author": "themyth92",
+  "author": "themyth92 & piotrmocek",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/themyth92/ngx-lightbox/issues"

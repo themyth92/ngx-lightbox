@@ -11,6 +11,7 @@ export interface IAlbum {
   src: string;
   caption?: string;
   thumb: string;
+  iframe?: boolean;
 }
 
 export const LIGHTBOX_EVENT = {
@@ -20,7 +21,8 @@ export const LIGHTBOX_EVENT = {
   ZOOM_IN: 4,
   ZOOM_OUT: 5,
   ROTATE_LEFT: 6,
-  ROTATE_RIGHT: 7
+  ROTATE_RIGHT: 7,
+  FILE_NOT_FOUND: 8
 };
 
 @Injectable()

@@ -9,3 +9,6 @@ src/*.js
 /dist
 *.d.ts
 *.ngsummary.json
+.idea
+.DS_Store
+package-lock.json

@@ -344,6 +344,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       this._onLoadImageSuccess();
     }
 
+    preloader.onerror = (e) => {
+      this._lightboxEvent.broadcastLightboxEvent({ id: LIGHTBOX_EVENT.FILE_NOT_FOUND, data: e });
+    }
+
     preloader.src = this._sanitizer.sanitize(SecurityContext.URL, src);
   }
 

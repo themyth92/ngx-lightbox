@@ -1,6 +1,6 @@
 {
   "name": "ngx-lightbox",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
   "dependencies": {},
@@ -26,7 +26,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.5",
     "ngx-filesaver": "8.1.0",
-    "ngx-lightbox": "^2.1.2",
+    "ngx-lightbox": "^2.5.0",
     "phantomjs-prebuilt": "^2.1.16",
     "rxjs": "^6.5.2",
     "tslint": "^5.17.0",

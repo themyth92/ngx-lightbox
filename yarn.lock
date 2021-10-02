@@ -2486,6 +2486,11 @@ file-loader@4.0.0:
     loader-utils "^1.2.2"
     schema-utils "^1.0.0"
 
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
+
 fill-range@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-4.0.0.tgz#d544811d428f98eb06a63dc402d2403c328c38f7"
@@ -4244,6 +4249,13 @@ next-tick@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
+
+ngx-filesaver@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-filesaver/-/ngx-filesaver-8.1.0.tgz#f82a567f70c4ee81fc67b25bf594f3959c371b19"
+  integrity sha512-xAwThsB/ap9qs7BRgW+mJPWBK60uaqkfPnw3vzbykTdfIvGf62U/6osDCq4TCPl/POWLFui6b3Bu+gfDMqoZhw==
+  dependencies:
+    tslib "^1.9.0"
 
 ngx-lightbox@^2.1.2:
   version "2.2.2"

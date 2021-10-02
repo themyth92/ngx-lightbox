@@ -4,6 +4,8 @@ import { LightboxConfig } from './lightbox-config.service';
 import { LightboxEvent, LightboxWindowRef } from './lightbox-event.service';
 import { LightboxOverlayComponent } from './lightbox-overlay.component';
 import { NgModule } from '@angular/core';
+import { FileSaverModule } from 'ngx-filesaver';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [ LightboxOverlayComponent, LightboxComponent ],
@@ -13,6 +15,7 @@ import { NgModule } from '@angular/core';
     LightboxEvent,
     LightboxWindowRef
   ],
-  entryComponents: [ LightboxOverlayComponent, LightboxComponent ]
+  entryComponents: [ LightboxOverlayComponent, LightboxComponent ],
+  imports: [ FileSaverModule, HttpClientModule ]
 })
 export class LightboxModule { }

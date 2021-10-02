@@ -15,6 +15,7 @@ export class LightboxConfig {
   public albumLabel: string;
   public showZoom: boolean;
   public showRotate: boolean;
+  public showDownloadButton: boolean;
   public containerElementResolver: (document: any) => HTMLElement;
 
   constructor() {

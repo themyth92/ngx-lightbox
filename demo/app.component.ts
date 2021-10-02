@@ -57,7 +57,8 @@ export class AppComponent {
       showImageNumberLabel: true,
       disableScrolling: true,
       showZoom: true,
-      showRotate: true
+      showRotate: true,
+      showDownloadButton: true
     });
   }
 

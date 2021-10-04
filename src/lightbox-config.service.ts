@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 @Injectable()
 export class LightboxConfig {
   public fadeDuration: number;

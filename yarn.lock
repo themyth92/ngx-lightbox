@@ -4250,12 +4250,12 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ngx-filesaver@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-filesaver/-/ngx-filesaver-12.0.0.tgz#b46994d2c74a872a61fc132844dcdf0ca3aa4377"
-  integrity sha512-OHKQc0EG5Xa+ParvgsJCvzVXVDaRAPHIz7JRe/oiVbUf+N9/hT16J69wN8TWKpQzHVF5GO3m5/esiYMnJ7KeEQ==
+ngx-filesaver@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-filesaver/-/ngx-filesaver-8.1.0.tgz#f82a567f70c4ee81fc67b25bf594f3959c371b19"
+  integrity sha512-xAwThsB/ap9qs7BRgW+mJPWBK60uaqkfPnw3vzbykTdfIvGf62U/6osDCq4TCPl/POWLFui6b3Bu+gfDMqoZhw==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^1.9.0"
 
 ngx-lightbox@^2.5.0:
   version "2.5.0"
@@ -6355,11 +6355,6 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
-
-tslib@^2.1.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
-  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tslint@^5.17.0:
   version "5.18.0"

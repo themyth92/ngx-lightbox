@@ -1,11 +1,11 @@
 {
   "name": "ngx-lightbox",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
   "dependencies": {
     "file-saver": "^2.0.5",
-    "ngx-filesaver": "^12.0.0"
+    "ngx-filesaver": "8.1.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.2",

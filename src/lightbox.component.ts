@@ -1,3 +1,5 @@
+import { FileSaverService } from 'ngx-filesaver';
+
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -13,7 +15,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FileSaverService } from 'ngx-filesaver';
 
 import {
   IAlbum,

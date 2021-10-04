@@ -3,7 +3,10 @@
   "version": "2.5.0",
   "description": "A port >= angular5 for lightbox2",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "ngx-filesaver": "^12.0.0"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.2",
     "@angular/cli": "^8.0.1",
@@ -18,14 +21,12 @@
     "copyfiles": "^2.1.0",
     "core-js": "^2.6.9",
     "del-cli": "^2.0.0",
-    "file-saver": "^2.0.5",
     "jasmine-core": "^3.4.0",
     "karma": "^4.1.0",
     "karma-jasmine": "^2.0.1",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.5",
-    "ngx-filesaver": "8.1.0",
     "ngx-lightbox": "^2.5.0",
     "phantomjs-prebuilt": "^2.1.16",
     "rxjs": "^6.5.2",

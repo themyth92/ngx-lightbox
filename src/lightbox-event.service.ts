@@ -8,9 +8,14 @@ export interface IEvent {
 }
 
 export interface IAlbum {
+  /** The source image to your thumbnail that you want to with use lightbox when user click on thumbnail image */
   src: string;
+  /** Your caption corresponding with your image */
   caption?: string;
+  /** Source of your thumbnail. It is being used inside your component markup so this properties depends on your naming. */
   thumb: string;
+  /** The downloaded file name. ex: file1.png */
+  fileName?: string;
 }
 
 export const LIGHTBOX_EVENT = {

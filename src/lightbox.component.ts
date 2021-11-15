@@ -199,8 +199,12 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   public download($event: any): void {
     $event.stopPropagation();
     const url = this.album[this.currentImageIndex].src;
-    const parts = url.split('/');
-    const fileName = parts[parts.length - 1];
+    if (this.album[this.currentImageIndex].fileName != undefined) {
+      var fileName = this.album[this.currentImageIndex].fileName;
+    } else {
+      const parts = url.split('/');
+      var fileName = parts[parts.length - 1];
+    }
 
     this._http.get(url, {
       responseType: 'blob'

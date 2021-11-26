@@ -1,7 +1,6 @@
 import { FileSaverService } from 'ngx-filesaver';
 
 import { DOCUMENT } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -100,7 +99,6 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     private _lightboxEvent: LightboxEvent,
     public _lightboxElem: ElementRef,
     private _lightboxWindowRef: LightboxWindowRef,
-    private _http: HttpClient,
     private _fileSaverService: FileSaverService,
     private _sanitizer: DomSanitizer,
     @Inject(DOCUMENT) private _documentRef
@@ -201,12 +199,25 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     const url = this.album[this.currentImageIndex].src;
     const parts = url.split('/');
     const fileName = parts[parts.length - 1];
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const preloader = new Image();
+    const _this = this
 
-    this._http.get(url, {
-      responseType: 'blob'
-    }).subscribe(res => {
-      this._fileSaverService.save(res, fileName);
-    });
+    preloader.onload = function () {
+      // @ts-ignore
+      canvas.width = this.naturalWidth;
+      // @ts-ignore
+      canvas.height = this.naturalHeight;
+
+      // @ts-ignore
+      ctx.drawImage(this, 0, 0);
+      canvas.toBlob(function (blob) {
+        _this._fileSaverService.save(blob, fileName)
+      }, 'image/jpeg', 0.75);
+    };
+    preloader.crossOrigin = '';
+    preloader.src = this._sanitizer.sanitize(SecurityContext.URL, url);
   }
 
   public control($event: any): void {

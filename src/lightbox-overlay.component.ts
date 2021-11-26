@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 
+import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -8,11 +9,14 @@ import {
   Inject,
   Input,
   OnDestroy,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 
-import { IEvent, LIGHTBOX_EVENT, LightboxEvent } from './lightbox-event.service';
-import { DOCUMENT } from '@angular/common';
+import {
+  IEvent,
+  LIGHTBOX_EVENT,
+  LightboxEvent,
+} from './lightbox-event.service';
 
 @Component({
   selector: '[lb-overlay]',

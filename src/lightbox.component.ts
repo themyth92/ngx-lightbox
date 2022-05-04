@@ -197,6 +197,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   public download($event: any): void {
     $event.stopPropagation();
     const url = this.album[this.currentImageIndex].src;
+    const downloadUrl = this.album[this.currentImageIndex].downloadUrl;
     const parts = url.split('/');
     const fileName = parts[parts.length - 1];
     const canvas = document.createElement('canvas');
@@ -217,7 +218,10 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       }, 'image/jpeg', 0.75);
     };
     preloader.crossOrigin = '';
-    preloader.src = this._sanitizer.sanitize(SecurityContext.URL, url);
+    if(downloadUrl && downloadUrl.length > 0)
+      preloader.src = this._sanitizer.sanitize(SecurityContext.URL, downloadUrl);
+    else
+      preloader.src = this._sanitizer.sanitize(SecurityContext.URL, url);
   }
 
   public control($event: any): void {

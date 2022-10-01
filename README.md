@@ -69,7 +69,7 @@ export class AppComponent {
          thumb: thumb
       };
 
-      this._albums.push(album);
+      this._album.push(album);
     }
   }
 

@@ -32,7 +32,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -75,5 +74,7 @@
       }
     }
   },
-  "defaultProject": "ngx-lightbox"
+  "cli": {
+    "analytics": false
+  }
 }

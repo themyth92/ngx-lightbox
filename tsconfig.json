@@ -7,7 +7,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noUnusedLocals": true,
-    "target": "es5",
+    "target": "es2015",
     "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"

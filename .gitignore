@@ -9,3 +9,5 @@ src/*.js
 /dist
 *.d.ts
 *.ngsummary.json
+
+.angular

@@ -25,48 +25,52 @@ import {
 
 @Component({
   template: `
-    <div class="lb-outerContainer transition" #outerContainer id="outerContainer">
-      <div class="lb-container" #container id="container">
-        <img class="lb-image"
-             id="image"
-             [src]="album[currentImageIndex].src"
-             class="lb-image animation fadeIn"
-             [hidden]="ui.showReloader"
-             #image>
-        <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
-          <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
-          <a class="lb-next" [hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
+    <div class="lb-elements-container">
+      <div class="outside-click lb-close" (click)="close($event)" [hidden]="!closeOnOutsideClick"></div>
+      <div class="lb-outerContainer transition" #outerContainer id="outerContainer">
+        <div class="lb-container" #container id="container">
+          <img class="lb-image"
+               id="image"
+               [src]="album[currentImageIndex].src"
+               class="lb-image animation fadeIn"
+               [hidden]="ui.showReloader"
+               #image>
+          <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
+            <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
+            <a class="lb-next" [hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
+          </div>
+          <div class="lb-loader" [hidden]="!ui.showReloader" (click)="close($event)">
+            <a class="lb-cancel"></a>
+          </div>
         </div>
-        <div class="lb-loader" [hidden]="!ui.showReloader" (click)="close($event)">
-          <a class="lb-cancel"></a>
+      </div>
+      <div class="lb-dataContainer" [hidden]="ui.showReloader" #dataContainer>
+        <div class="lb-data">
+          <div class="lb-details">
+            <span class="lb-caption animation fadeIn" [hidden]="!ui.showCaption" [innerHtml]="album[currentImageIndex].caption" #caption>
+            </span>
+            <span class="lb-number animation fadeIn" [hidden]="!ui.showPageNumber" #number>{{ content.pageNumber }}</span>
+          </div>
+          <div class="lb-controlContainer">
+            <div class="lb-closeContainer">
+              <a class="lb-close" (click)="close($event)"></a>
+            </div>
+            <div class="lb-downloadContainer" [hidden]="!ui.showDownloadButton">
+              <a class="lb-download" (click)="download($event)"></a>
+            </div>
+            <div class="lb-turnContainer" [hidden]="!ui.showRotateButton">
+              <a class="lb-turnLeft" (click)="control($event)"></a>
+              <a class="lb-turnRight" (click)="control($event)"></a>
+            </div>
+            <div class="lb-zoomContainer" [hidden]="!ui.showZoomButton">
+              <a class="lb-zoomOut" (click)="control($event)"></a>
+              <a class="lb-zoomIn" (click)="control($event)"></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="lb-dataContainer" [hidden]="ui.showReloader" #dataContainer>
-      <div class="lb-data">
-        <div class="lb-details">
-          <span class="lb-caption animation fadeIn" [hidden]="!ui.showCaption" [innerHtml]="album[currentImageIndex].caption" #caption>
-          </span>
-          <span class="lb-number animation fadeIn" [hidden]="!ui.showPageNumber" #number>{{ content.pageNumber }}</span>
-        </div>
-        <div class="lb-controlContainer">
-          <div class="lb-closeContainer">
-            <a class="lb-close" (click)="close($event)"></a>
-          </div>
-          <div class="lb-downloadContainer" [hidden]="!ui.showDownloadButton">
-            <a class="lb-download" (click)="download($event)"></a>
-          </div>
-          <div class="lb-turnContainer" [hidden]="!ui.showRotateButton">
-            <a class="lb-turnLeft" (click)="control($event)"></a>
-            <a class="lb-turnRight" (click)="control($event)"></a>
-          </div>
-          <div class="lb-zoomContainer" [hidden]="!ui.showZoomButton">
-            <a class="lb-zoomOut" (click)="control($event)"></a>
-            <a class="lb-zoomIn" (click)="control($event)"></a>
-          </div>
-        </div>
-      </div>
-    </div>`,
+    `,
   selector: '[lb-content]',
   host: {
     '(click)': 'close($event)',
@@ -78,6 +82,7 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
   @Input() currentImageIndex: number;
   @Input() options: any;
   @Input() cmpRef: any;
+  @Input() closeOnOutsideClick = true;
   @ViewChild('outerContainer', { static: false }) _outerContainerElem: ElementRef;
   @ViewChild('container', { static: false }) _containerElem: ElementRef;
   @ViewChild('leftArrow', { static: false }) _leftArrowElem: ElementRef;
@@ -278,8 +283,8 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     } else {
       this._documentRef.getElementById('outerContainer').style.height = this._documentRef.getElementById('image').style.height;
       this._documentRef.getElementById('outerContainer').style.width = this._documentRef.getElementById('image').style.width;
-      this._documentRef.getElementById('container').style.height = this._documentRef.getElementById('image').style.width;
-      this._documentRef.getElementById('container').style.width = this._documentRef.getElementById('image').style.height;
+      this._documentRef.getElementById('container').style.height = '100%';
+      this._documentRef.getElementById('container').style.width = '100%';
     }
   }
 
@@ -300,9 +305,9 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
       this._documentRef.getElementById('image').style.transformOrigin = (height / 2) + 'px ' + (height / 2) + 'px';
     } else if (temp === 180) {
       this._documentRef.getElementById('image').style.transformOrigin = (width / 2) + 'px ' + (height / 2) + 'px';
- } else if (temp === 270) {
+    } else if (temp === 270) {
       this._documentRef.getElementById('image').style.transformOrigin = (width / 2) + 'px ' + (width / 2) + 'px';
- }
+    }
   }
 
   public nextImage(): void {

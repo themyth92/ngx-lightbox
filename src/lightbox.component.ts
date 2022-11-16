@@ -34,11 +34,11 @@ import {
              [hidden]="ui.showReloader"
              #image>
         <div class="lb-nav" [hidden]="!ui.showArrowNav" #navArrow>
-          <a class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></a>
-          <a class="lb-next" [hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></a>
+          <button type="button" class="lb-prev" [hidden]="!ui.showLeftArrow" (click)="prevImage()" #leftArrow></button>
+          <button type="button" class="lb-next" [hidden]="!ui.showRightArrow" (click)="nextImage()" #rightArrow></button>
         </div>
         <div class="lb-loader" [hidden]="!ui.showReloader" (click)="close($event)">
-          <a class="lb-cancel"></a>
+          <button type="button" class="lb-cancel"></button>
         </div>
       </div>
     </div>
@@ -51,18 +51,18 @@ import {
         </div>
         <div class="lb-controlContainer">
           <div class="lb-closeContainer">
-            <a class="lb-close" (click)="close($event)"></a>
+            <button type="button" class="lb-close" (click)="close($event)"></button>
           </div>
           <div class="lb-downloadContainer" [hidden]="!ui.showDownloadButton">
-            <a class="lb-download" (click)="download($event)"></a>
+            <button type="button" class="lb-download" (click)="download($event)"></button>
           </div>
           <div class="lb-turnContainer" [hidden]="!ui.showRotateButton">
-            <a class="lb-turnLeft" (click)="control($event)"></a>
-            <a class="lb-turnRight" (click)="control($event)"></a>
+            <button type="button" class="lb-turnLeft" (click)="control($event)"></button>
+            <button type="button" class="lb-turnRight" (click)="control($event)"></button>
           </div>
           <div class="lb-zoomContainer" [hidden]="!ui.showZoomButton">
-            <a class="lb-zoomOut" (click)="control($event)"></a>
-            <a class="lb-zoomIn" (click)="control($event)"></a>
+            <button type="button" class="lb-zoomOut" (click)="control($event)"></button>
+            <button type="button" class="lb-zoomIn" (click)="control($event)"></button>
           </div>
         </div>
       </div>
@@ -524,27 +524,15 @@ export class LightboxComponent implements OnInit, AfterViewInit, OnDestroy, OnIn
     const fadeDuration = this.options.fadeDuration;
 
     this._rendererRef.setStyle(this._lightboxElem.nativeElement,
-      '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._lightboxElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._outerContainerElem.nativeElement,
-      '-webkit-transition-duration', `${resizeDuration}s`);
     this._rendererRef.setStyle(this._outerContainerElem.nativeElement,
       'transition-duration', `${resizeDuration}s`);
     this._rendererRef.setStyle(this._dataContainerElem.nativeElement,
-      '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._dataContainerElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._imageElem.nativeElement,
-      '-webkit-animation-duration', `${fadeDuration}s`);
     this._rendererRef.setStyle(this._imageElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
     this._rendererRef.setStyle(this._captionElem.nativeElement,
-      '-webkit-animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._captionElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
-    this._rendererRef.setStyle(this._numberElem.nativeElement,
-      '-webkit-animation-duration', `${fadeDuration}s`);
     this._rendererRef.setStyle(this._numberElem.nativeElement,
       'animation-duration', `${fadeDuration}s`);
   }

@@ -6,8 +6,9 @@ A [lightbox2](https://github.com/lokesh/lightbox2) implementation port to use wi
 
 ## Version
 
-- For Angular 5, 6, 7, please use ngx-lightbox 1.x.x. `npm install ngx-lightbox@1.2.0`
+- For Angular >= 14, please use ngx-lightbox 3.x.x. `npm install ngx-lightbox@3.0.0`
 - For Angular >= 8, please use ngx-lightbox 2.x.x. `npm install ngx-lightbox@2.0.0`
+- For Angular 5, 6, 7, please use ngx-lightbox 1.x.x. `npm install ngx-lightbox@1.2.0`
 - For Angular 2, 4, please use [angular2-lightbox](https://github.com/themyth92/angular2-lightbox)
 
 ## [Demo](https://themyth92.com/project/ngx-lightbox)

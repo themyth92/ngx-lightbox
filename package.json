@@ -5,21 +5,21 @@
   "main": "index.js",
   "dependencies": {
     "file-saver": "^2.0.5",
-    "ngx-filesaver": "14.0.0"
+    "ngx-filesaver": "^15.0.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.0.0",
-    "@angular/cli": "^14.0.0",
-    "@angular/common": "^14.0.0",
-    "@angular/compiler": "^14.0.0",
-    "@angular/compiler-cli": "^14.0.0",
-    "@angular/core": "^14.0.0",
-    "@angular/platform-browser": "^14.0.0",
-    "@angular/platform-browser-dynamic": "^14.0.0",
+    "@angular-devkit/build-angular": "^15.2.8",
+    "@angular/cli": "^15.2.8",
+    "@angular/common": "^15.2.9",
+    "@angular/compiler": "^15.2.9",
+    "@angular/compiler-cli": "^15.2.9",
+    "@angular/core": "^15.2.9",
+    "@angular/platform-browser": "^15.2.9",
+    "@angular/platform-browser-dynamic": "^15.2.9",
     "@types/file-saver": "^2.0.5",
     "@types/jasmine": "^4.3.0",
     "copyfiles": "^2.4.1",
-    "core-js": "^3.25.3",
+    "core-js": "^3.30.2",
     "del-cli": "^5.0.0",
     "jasmine-core": "^4.4.0",
     "karma": "^6.4.1",
@@ -31,8 +31,8 @@
     "phantomjs-prebuilt": "^2.1.16",
     "rxjs": "^7.5.7",
     "tslint": "^6.1.3",
-    "typescript": "4.7.4",
-    "webpack": "^5.74.0",
+    "typescript": "4.9.5",
+    "webpack": "^5.82.1",
     "zone.js": "^0.11.8"
   },
   "scripts": {
@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adventmedia/ngx-lightbox.git"
+    "url": "git+https://github.com/themyth92/ngx-lightbox.git"
   },
   "keywords": [
     "lightbox2",

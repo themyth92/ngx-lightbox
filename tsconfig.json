@@ -7,7 +7,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noUnusedLocals": true,
-    "target": "es2015",
+    "target": "ES2022",
     "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"
@@ -15,7 +15,8 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   },
   "include": [
     "src/*.ts"

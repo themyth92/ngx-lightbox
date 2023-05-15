@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/themyth92/ngx-lightbox.git"
+    "url": "git+https://github.com/adventmedia/ngx-lightbox.git"
   },
   "keywords": [
     "lightbox2",

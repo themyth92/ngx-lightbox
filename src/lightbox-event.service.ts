@@ -12,6 +12,7 @@ export interface IAlbum {
   caption?: string;
   thumb: string;
   downloadUrl?: string;
+  downloadName?: string;
 }
 
 export const LIGHTBOX_EVENT = {
